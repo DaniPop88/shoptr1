@@ -11,22 +11,6 @@
     <meta property="og:url" content="https://mariecustomgoods.com">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="https://i.ibb.co/0pxHp7H2/1.png">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Store",
-      "name": "Marie Custom Goods - NCR",
-      "image": "https://i.ibb.co/0pxHp7H2/1.png",
-      "telephone": "+63 2 7990 4420",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Unit 12, Creative Tower, 124 EDSA Extension, Greenhills, San Juan City",
-        "addressLocality": "Metro Manila",
-        "postalCode": "1503",
-        "addressCountry": "PH"
-      }
-    }
-    </script>
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
@@ -39,6 +23,7 @@
             padding: 20px;
             font-size: 2em;
         }
+        header h1 { font-size: 2em; margin: 0; }
 
         .hero {
             text-align: center;
@@ -59,247 +44,125 @@
         }
 
         .why-marie { background: #e8f5e9; padding: 40px 10px; text-align: center; }
-        .why-marie-content {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .why-item {
-            width: 280px;
-            padding: 15px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.10);
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .why-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 0;
-            animation: popInOut 2s ease-in-out infinite;
-        }
+        .why-marie-content { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .why-item { width: 280px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.10); margin-bottom: 10px; text-align: center; }
+        .why-icon { width: 50px; height: 50px; margin-bottom: 0; animation: popInOut 2s ease-in-out infinite; }
         .why-item h3 { font-size: 1.5em; margin-bottom: 10px; color: #155824; }
         .why-item p { font-size: 1.1em; color: #222; line-height: 1.5; }
 
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 20px auto;
-            justify-content: center;
-        }
-        .product {
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 15px;
-            width: 250px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.10);
-            text-align: center;
-            position: relative;
-        }
-        .product img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            aspect-ratio: 1/1;
-        }
-        .button {
-            background: #ddcf0e;
-            color: #000;
-            padding: 12px 16px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            width: 90%;
-            max-width: 250px;
-            transition: box-shadow 0.2s;
-        }
+        .products { display: flex; flex-wrap: wrap; gap: 20px; margin: 20px auto; justify-content: center; }
+        .product { background: #fff; border: 1px solid #ddd; padding: 15px; width: 250px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.10); text-align: center; position: relative; }
+        .product img { max-width: 100%; height: auto; border-radius: 8px; aspect-ratio: 1/1; }
+        .button { background: #ddcf0e; color: #000; padding: 12px 16px; border: none; cursor: pointer; border-radius: 5px; font-size: 1.1em; margin-bottom: 10px; width: 90%; max-width: 250px; transition: box-shadow 0.2s; }
         .button:hover, .button:focus { background-color: #39b300; box-shadow: 0px 8px 20px rgba(0,0,0,0.20); outline: none; }
-        .quantity, input[type="text"] {
-            margin-top: 10px;
-            padding: 5px;
-            width: 70px;
-            text-align: center;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
+        .quantity, input[type="text"] { margin-top: 10px; padding: 5px; width: 70px; text-align: center; border-radius: 5px; border: 1px solid #ddd; }
         label { display:block; margin-bottom:2px; margin-top:6px; font-size:1em; }
 
-        .cart-backdrop {
-            display: none;
-            position: fixed;
-            top:0; left:0; right:0; bottom:0;
-            background: rgba(0,0,0,0.3);
-            z-index: 100;
-        }
-        .cart-modal {
-            display: none;
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #fff, #f1f1f1);
-            padding: 20px 10px;
-            border-radius: 16px 16px 0 0;
-            box-shadow: 0px -4px 24px rgba(0,0,0,0.18);
-            width: 100%;
-            max-width: 420px;
-            bottom: 0;
-            z-index: 101;
-            border: 3px solid #ddcf0e;
-            text-align: center;
-        }
+        .cart-backdrop { display: none; position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.3); z-index: 100; }
+        .cart-modal { display: none; position: fixed; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #fff, #f1f1f1); padding: 20px 10px; border-radius: 16px 16px 0 0; box-shadow: 0px -4px 24px rgba(0,0,0,0.18); width: 100%; max-width: 420px; bottom: 0; z-index: 101; border: 3px solid #ddcf0e; text-align: center; }
         .cart-modal h3 { margin: 0 0 10px 0; font-size: 1.2em; font-weight: bold; }
         .cart-modal ul { list-style: none; padding: 0; margin: 0; }
         .cart-modal ul li { padding: 5px 0; display: flex; justify-content: space-between; align-items: center; font-size:1em; }
-        .cart-modal .remove-item-btn {
-            margin-left: 10px;
-            background: none;
-            border: none;
-            color: #c02618;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
+        .cart-modal .remove-item-btn { margin-left: 10px; background: none; border: none; color: #c02618; font-size: 1.2em; cursor: pointer; }
         .empty-cart-msg { color: #888; font-style: italic; padding: 10px 0; }
-        .cart-modal .cart-count {
-            background-color: #c02618;
-            color: #fff;
-            padding: 3px 8px;
-            border-radius: 15px;
-            font-size: .9em;
-            position: absolute;
-            top: 5px;
-            right: 5px;
-        }
-        .cart-btn-fixed {
-            position: fixed;
-            bottom: 18px;
-            right: 18px;
-            background: #155824;
-            color: #fff;
-            border-radius: 50%;
-            width: 64px; height: 64px;
-            font-size: 2.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0px 8px 24px rgba(0,0,0,0.22);
-            cursor: pointer;
-            z-index: 99;
-        }
-        .cart-btn-fixed .cart-count {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: #ddcf0e;
-            color: #000;
-            border-radius: 50%;
-            padding: 3px 8px;
-            font-size: .9em;
-        }
+        .cart-modal .cart-count { background-color: #c02618; color: #fff; padding: 3px 8px; border-radius: 15px; font-size: .9em; position: absolute; top: 5px; right: 5px; }
+        .cart-btn-fixed { position: fixed; bottom: 18px; right: 18px; background: #155824; color: #fff; border-radius: 50%; width: 64px; height: 64px; font-size: 2.5em; display: flex; align-items: center; justify-content: center; box-shadow: 0px 8px 24px rgba(0,0,0,0.22); cursor: pointer; z-index: 99; }
+        .cart-btn-fixed .cart-count { position: absolute; top: 8px; right: 8px; background: #ddcf0e; color: #000; border-radius: 50%; padding: 3px 8px; font-size: .9em; }
 
-        footer {
-            background: linear-gradient(to bottom, #155824, #000);
-            color: #fff;
-            padding: 20px 10px;
-            text-align: center;
-            font-size: .9em;
-        }
+        footer { background: linear-gradient(to bottom, #155824, #000); color: #fff; padding: 20px 10px; text-align: center; font-size: .9em; }
         footer a { color: #28a745; text-decoration: none; font-weight: bold; }
         footer a:hover { text-decoration: underline; }
 
         .testimonials { background-color: #f1f1f1; padding: 24px 8px; text-align: center; }
         .testimonials h2 { margin-bottom: 10px; font-size:1.3em; }
-        #testimonial-slider {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            height: 110px;
-            position: relative;
-            transition: transform .5s;
-            margin-bottom: 8px;
-        }
+        #testimonial-slider { display: flex; flex-direction: column; overflow: hidden; height: 110px; position: relative; transition: transform .5s; margin-bottom: 8px; }
         #testimonial-slider p { display: none; padding: 8px; font-size: 1.05em; color: #333; line-height: 1.5; text-align: center; font-style: italic;}
         #testimonial-slider p.active { display: block; }
         .testimonial-controls { display: flex; justify-content: center; gap: 10px; }
         .testimonial-controls button { background: #ddcf0e; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
         .testimonial-controls button:focus { outline: 2px solid #155824; }
 
-        .faq, .contact {
-            background: #fff;
-            padding: 20px 12px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.10);
-        }
+        .faq, .contact { background: #fff; padding: 20px 12px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.10); }
         .faq h3, .contact h3 { font-size: 1.3em; margin-bottom: 10px; color: #155824; }
         .faq p, .contact p { font-size: 1em; color: #333; margin-bottom: 10px; }
         .faq p span, .contact p span { font-weight: bold; color: #155824; }
-        .info-section {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 24px;
-            max-width: 1100px;
-            margin: 24px auto 20px auto;
-        }
+        .info-section { display: flex; justify-content: center; align-items: flex-start; gap: 24px; max-width: 1100px; margin: 24px auto 20px auto; }
         .info-section .contact, .info-section .faq { flex: 1 1 0; min-width: 220px; margin: 0; box-sizing: border-box; }
 
-        .modal-backdrop {
-            display: none;
-            position: fixed;
-            top:0; left:0; right:0; bottom:0;
-            background: rgba(0,0,0,0.6);
-            z-index: 200;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            background: #fff;
-            padding: 24px;
-            border-radius: 10px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            z-index: 201;
-            max-width: 98vw;
-            min-width: 300px;
-        }
+        .modal-backdrop { display: none; position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6); z-index: 200; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 201; max-width: 98vw; min-width: 300px; }
 
-        #toast {
-            display: none;
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #28a745;
-            color: #fff;
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 300;
-            font-size: 1.2em;
-        }
-        @keyframes popInOut {
-            0% { transform: scale(.8); opacity: 0;}
-            50% { transform: scale(1.1); opacity: 1;}
-            100% { transform: scale(1); opacity: 1;}
-        }
-        @media (max-width: 800px) {
-            .info-section { flex-direction: column; gap: 12px; max-width: 98vw;}
-            .info-section .contact, .info-section .faq { min-width: 0; width: 100%;}
-            .products { flex-direction: column; align-items: center; }
-        }
+        #toast { display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #28a745; color: #fff; padding: 15px 25px; border-radius: 8px; z-index: 300; font-size: 1.2em; }
+        @keyframes popInOut { 0% { transform: scale(.8); opacity: 0;} 50% { transform: scale(1.1); opacity: 1;} 100% { transform: scale(1); opacity: 1;} }
+
+        /* MOBILE-ONLY CHANGES BELOW */
         @media (max-width: 600px) {
-            .product { width: 98vw; border-radius: 12px; margin-bottom: 12px; font-size:1.08em;}
-            .hero { padding: 22px 6px; }
-            .cart-modal { max-width: 99vw; border-radius: 18px 18px 0 0; padding:14px 4px;}
-        }
-        @media (max-width: 400px) {
-            .product { width: 99vw; font-size:1em;}
+            header { padding: 8px 0 4px 0; }
+            header h1 { font-size: 1.1em; }
+
+            /* Who we are/mission: horizontal swipe carousel */
+            .why-marie-content {
+                flex-wrap: nowrap !important;
+                overflow-x: auto;
+                gap: 0;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            .why-item {
+                min-width: 95vw;
+                max-width: 98vw;
+                margin: 0 0 0 0;
+                scroll-snap-align: center;
+                box-sizing: border-box;
+                padding: 22px 5px 18px 5px;
+            }
+            .why-item:not(:last-child) { margin-right: 8px; }
+
+            /* Products: horizontal carousel */
+            .products {
+                flex-wrap: nowrap !important;
+                overflow-x: auto;
+                gap: 0;
+                padding: 0 0 0 0;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                margin: 10px 0 10px 0;
+            }
+            .product {
+                min-width: 94vw;
+                max-width: 97vw;
+                margin: 0 0 0 0;
+                scroll-snap-align: center;
+                padding: 15px 7px 12px 7px;
+                border-radius: 13px;
+            }
+            .product:not(:last-child) { margin-right: 8px; }
+
+            /* Testimonials: horizontal carousel */
+            #testimonial-slider {
+                flex-direction: row !important;
+                overflow-x: hidden !important;
+                min-height: 130px;
+                width: 100vw;
+                max-width: 100vw;
+                transition: transform 0.5s;
+            }
+            #testimonial-slider p {
+                display: block !important;
+                min-width: 100vw;
+                max-width: 100vw;
+                margin: 0;
+                padding: 18px 20px 12px 20px;
+                font-size: 1.08em;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+                min-height: 90px;
+                max-height: 160px;
+                overflow-y: auto;
+            }
+            #testimonial-slider p:not(.active) { display: none !important; }
+            .testimonials { padding: 16px 2px; }
         }
     </style>
 </head>
@@ -500,7 +363,6 @@
     </section>
     </main>
 
-    <!-- Cart Modal and Backdrop -->
     <div class="cart-backdrop" id="cart-backdrop" tabindex="-1" aria-label="Cart Backdrop"></div>
     <aside class="cart-modal" id="cart-modal" aria-label="Shopping Cart" tabindex="0">
         <h3>Your Cart <span class="cart-count">0</span></h3>
@@ -514,7 +376,6 @@
         🛒<span class="cart-count">0</span>
     </div>
 
-    <!-- Bulk Discount Modal -->
     <div class="modal-backdrop" id="modal-backdrop" tabindex="-1"></div>
     <div class="modal" id="bulk-modal" aria-label="Bulk Discount Request" tabindex="0">
         <h3>Request Bulk Discount</h3>
@@ -541,35 +402,17 @@
     </footer>
 
     <script>
-        // Cart logic
+        // Cart logic, unchanged
         let cart = [];
         function addToCart(itemName, price, quantity, customText = "") {
             quantity = parseInt(quantity);
             customText = (customText || "").trim();
-            // Validate input
-            if (isNaN(quantity) || quantity < 1) {
-                alert("Please enter a valid quantity.");
-                return;
-            }
-            if (customText.length > 20) {
-                alert("Custom text must be 20 characters or less.");
-                return;
-            }
-            // Check for existing product (same name, text)
-            let existing = cart.find(item =>
-                item.itemName === itemName &&
-                item.customText === customText
-            );
-            if (existing) {
-                existing.quantity += quantity;
-                existing.totalPrice = existing.price * existing.quantity;
-            } else {
-                let item = { itemName, price, quantity, customText, totalPrice: price * quantity };
-                cart.push(item);
-            }
-            updateCart();
-            showToast("Added to cart!");
-            highlightCart();
+            if (isNaN(quantity) || quantity < 1) { alert("Please enter a valid quantity."); return; }
+            if (customText.length > 20) { alert("Custom text must be 20 characters or less."); return; }
+            let existing = cart.find(item => item.itemName === itemName && item.customText === customText);
+            if (existing) { existing.quantity += quantity; existing.totalPrice = existing.price * existing.quantity; }
+            else { let item = { itemName, price, quantity, customText, totalPrice: price * quantity }; cart.push(item); }
+            updateCart(); showToast("Added to cart!"); highlightCart();
         }
         function updateCart() {
             let cartItems = document.getElementById("cart-items");
@@ -577,11 +420,8 @@
             let emptyMsg = document.getElementById("empty-cart-msg");
             cartItems.innerHTML = "";
             let total = 0;
-            if (cart.length === 0) {
-                emptyMsg.style.display = "";
-            } else {
-                emptyMsg.style.display = "none";
-            }
+            if (cart.length === 0) { emptyMsg.style.display = ""; }
+            else { emptyMsg.style.display = "none"; }
             cart.forEach((item, idx) => {
                 let li = document.createElement("li");
                 let customDetails = "";
@@ -597,11 +437,7 @@
             cartItems.appendChild(totalItem);
             localStorage.setItem('cart', JSON.stringify(cart));
         }
-        function removeCartItem(idx) {
-            cart.splice(idx, 1);
-            updateCart();
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
+        function removeCartItem(idx) { cart.splice(idx, 1); updateCart(); localStorage.setItem('cart', JSON.stringify(cart)); }
         function showToast(msg="Added to cart!") {
             const toast = document.getElementById('toast');
             toast.textContent = msg;
@@ -679,34 +515,33 @@
         document.getElementById("cart-backdrop").onclick = closeCart;
         document.getElementById("modal-backdrop").onclick = closeBulkModal;
 
+        // TESTIMONIALS CAROUSEL FOR MOBILE (desktop untouched)
         let testimonialIdx = 0;
         let testimonials;
-        function showTestimonial(idx) {
+        function updateTestimonial(idx) {
             testimonials.forEach((testimonial, index) => {
                 testimonial.classList.remove('active');
             });
             testimonials[idx].classList.add('active');
+            if(window.innerWidth <= 600) {
+                document.getElementById('testimonial-slider').style.transform = `translateX(${-idx * 100}vw)`;
+            }
         }
         function nextTestimonial() {
             testimonialIdx = (testimonialIdx + 1) % testimonials.length;
-            showTestimonial(testimonialIdx);
+            updateTestimonial(testimonialIdx);
         }
         function prevTestimonial() {
             testimonialIdx = (testimonialIdx - 1 + testimonials.length) % testimonials.length;
-            showTestimonial(testimonialIdx);
+            updateTestimonial(testimonialIdx);
         }
         window.onload = function() {
             const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-                updateCart();
-            } else {
-                updateCart();
-            }
+            if (savedCart) { cart = JSON.parse(savedCart); updateCart(); } else { updateCart(); }
             testimonials = document.querySelectorAll('#testimonial-slider p');
             testimonialIdx = 0;
-            showTestimonial(testimonialIdx);
-            setInterval(nextTestimonial, 3000);
+            updateTestimonial(testimonialIdx);
+            setInterval(nextTestimonial, 3500);
             document.getElementById("testimonial-next").onclick = nextTestimonial;
             document.getElementById("testimonial-prev").onclick = prevTestimonial;
             document.getElementById("cart-btn-fixed").addEventListener("keydown", function(e){
