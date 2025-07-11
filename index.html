@@ -39,6 +39,21 @@
             padding: 20px;
             font-size: 2em;
         }
+        
+        /* --- ADD HERE --- */
+        #main-logo {
+            animation: popInOutMainLogo 4s ease-in-out infinite;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        @keyframes popInOutMainLogo {
+            0% { transform: scale(0.85); opacity: 0.6; }
+            25% { transform: scale(1.07); opacity: 1; }
+            50% { transform: scale(0.95); opacity: 0.8; }
+            75% { transform: scale(1.10); opacity: 1; }
+            100% { transform: scale(0.85); opacity: 0.6; }
+        }
 
         .hero {
             text-align: center;
@@ -306,7 +321,14 @@
 <body>
     <header>
         <nav aria-label="Main Navigation">
-            <h1>MCG - NCR</h1>
+            <img 
+                src="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png" 
+                alt="Marie Custom Goods Logo"
+                id="main-logo"
+                width="100"
+                height="100"
+                loading="lazy"
+            />
         </nav>
     </header>
 
@@ -321,13 +343,13 @@
     <section class="why-marie" aria-label="Why Print With Us">
         <div class="why-marie-content">
             <div class="why-item" tabindex="0">
-                <img src="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png" alt="MARIE GOODS" class="why-icon" loading="lazy" width="100" height="100">
                 <h3>WHO WE ARE</h3>
+                <img src="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png" alt="MARIE GOODS" class="why-icon" loading="lazy" width="100" height="100">
                 <p>Founded by Marie Rodriguez, a design enthusiast, we started as a hobby and quickly grew into a business that’s passionate about helping you express your individuality through one-of-a-kind products.</p>
             </div>
             <div class="why-item" tabindex="0">
-                <img src="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png" alt="MARIE GOODS" class="why-icon" loading="lazy" width="100" height="100">
                 <h3>OUR MISSION</h3>
+                <img src="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png" alt="MARIE GOODS" class="why-icon" loading="lazy" width="100" height="100">
                 <p>We want to help you express yourself. Whether it's for your business, a special gift, or just something you’ve dreamed up, we're all about bringing your vision to life with quality prints and super fast service.</p>
             </div>
         </div>
