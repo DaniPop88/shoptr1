@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary - Marie Custom Goods</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4;}
+        .summary-container {
+            max-width: 500px;
+            margin: 32px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.12);
+        }
+        h1 { color: #155824; text-align:center;}
+        ul { list-style-type:none; padding:0; }
+        li { margin-bottom:12px; font-size:1.1em; }
+        .total { font-weight:bold; font-size:1.2em; color:#155824; margin-top:20px;}
+        .back-btn {
+            display: block;
+            margin: 24px auto 0 auto;
+            background: #ddcf0e;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover { background: #c7bc10; }
+        .empty { color: #888; text-align:center; margin: 30px 0; }
+    </style>
+</head>
+<body>
+    <div class="summary-container">
+        <h1>Your Order Summary</h1>
+        <ul id="order-list"></ul>
+        <div class="total" id="order-total"></div>
+        <a href="index.html" class="back-btn">Back to Shop</a>
+    </div>
+    <script>
+        // Get cart from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart') || "[]");
+        const orderList = document.getElementById('order-list');
+        const orderTotal = document.getElementById('order-total');
+        let total = 0;
+        if (cart.length === 0) {
+            orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
+            orderTotal.textContent = "";
+        } else {
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
+                orderList.appendChild(li);
+                total += item.totalPrice;
+            });
+            orderTotal.textContent = `Total: ₱${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
