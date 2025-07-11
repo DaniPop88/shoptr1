@@ -4,40 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARIE CUSTOM GOODS - NCR</title>
-
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <!-- AOS (Animate on Scroll) -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
     <style>
-        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
         header {
-            background: linear-gradient(to bottom, #28a745, #155824);
+            background: linear-gradient(to bottom, #28a745, #155824); /* Gradient green */
             color: white;
             text-align: center;
             padding: 20px;
             font-size: 2em;
-            background-size: cover;
-        }
-        header h1 {
-            margin: 0;
-        }
-        .cta-button {
-            padding: 10px 20px;
-            background-color: #ddcf0e;
-            color: black;
-            border: none;
-            font-size: 1.2em;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .cta-button:hover {
-            background-color: #39b300;
         }
         .products {
             display: flex;
@@ -67,19 +41,19 @@
             border-radius: 8px;
         }
         .button {
-            background-color: #ddcf0e;
+            background-color: #ddcf0e; /* Blue for buttons */
             color: rgb(0, 0, 0);
             padding: 10px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s, box-shadow 0.3s;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Added shadow */
+            margin-bottom: 10px; /* Added space below the buttons */
         }
         .button:hover {
             background-color: #39b300;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
         }
         .cart {
             position: fixed;
@@ -96,7 +70,7 @@
             z-index: 10;
         }
         .cart:hover {
-            transform: translateY(-50%) scale(1.05);
+            transform: translateY(-50%) scale(1.05); /* Scale effect on hover */
         }
         .cart h3 {
             margin: 0;
@@ -111,6 +85,12 @@
         .cart ul li {
             padding: 5px 0;
         }
+        .quantity {
+            margin-top: 10px;
+            padding: 5px;
+            width: 60px;
+            text-align: center;
+        }
         .cart .cart-count {
             background-color: #c02618;
             color: white;
@@ -122,7 +102,7 @@
             right: 5px;
         }
         footer {
-            background: linear-gradient(to bottom, #155824, #000000);
+            background: linear-gradient(to bottom, #155824, #000000); /* Gradient green */
             color: white;
             padding: 20px 10px;
             text-align: center;
@@ -136,7 +116,7 @@
         footer a:hover {
             text-decoration: underline;
         }
-
+        /* Responsive design */
         @media (max-width: 768px) {
             header {
                 font-size: 1.5em;
@@ -146,7 +126,6 @@
                 align-items: center;
             }
         }
-
         @media (max-width: 480px) {
             header {
                 font-size: 1.2em;
@@ -156,7 +135,7 @@
                 margin-bottom: 20px;
             }
         }
-
+        /* Toast Notification */
         #toast {
             display: none;
             position: fixed;
@@ -169,35 +148,35 @@
             border-radius: 8px;
             z-index: 100;
         }
-
-        /* Dark Mode */
-        body.dark-mode {
-            background: #181818;
-            color: #eee;
-        }
     </style>
 </head>
 <body>
     <header>
         <h1>MARIE CUSTOM GOODS - NCR</h1>
-        <p>Your personalized, high-quality products. Custom made just for you!</p>
-        <button class="cta-button" id="theme-toggle">🌒</button>
     </header>
 
-    <div class="products" data-aos="fade-up">
+    <div class="products">
         <!-- Product 1 -->
-        <div class="product" data-aos="fade-up">
+        <div class="product" data-aos="fade-up" data-aos-delay="100">
             <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt">
             <h2>Custom T-Shirt</h2>
             <p>Start From: ₱129.00/pc</p>
+            <div>
+                <label for="tshirt-text">Add your text:</label>
+                <input type="text" id="tshirt-text" placeholder="e.g. Your Name" />
+            </div>
+            <div>
+                <label for="tshirt-color">Pick a color:</label>
+                <input type="color" id="tshirt-color" value="#ffffff" />
+            </div>
             <label for="tshirt-qty">Quantity:</label>
             <input type="number" id="tshirt-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value)">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value, document.getElementById('tshirt-text').value, document.getElementById('tshirt-color').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
 
         <!-- Product 2 -->
-        <div class="product" data-aos="fade-up">
+        <div class="product" data-aos="fade-up" data-aos-delay="200">
             <img src="https://i.ibb.co/TB9Nhr8T/1.png" alt="Custom Coffee Mug">
             <h2>Custom Mug</h2>
             <p>Start From: ₱79.00/pc</p>
@@ -208,7 +187,7 @@
         </div>
 
         <!-- Product 3 -->
-        <div class="product" data-aos="fade-up">
+        <div class="product" data-aos="fade-up" data-aos-delay="300">
             <img src="https://i.ibb.co/gLvmgNmf/3.png" alt="Custom Hat">
             <h2>Custom Hat</h2>
             <p>Start From: ₱99.00/pc</p>
@@ -218,7 +197,60 @@
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
 
-        <!-- More products go here... -->
+        <!-- Product 4 -->
+        <div class="product" data-aos="fade-up" data-aos-delay="400">
+            <img src="https://i.ibb.co/zL0N1v3/5.png" alt="Custom Sling Bag">
+            <h2>Custom Bag</h2>
+            <p>Start From: ₱229.00/pc</p>
+            <label for="bag-qty">Quantity:</label>
+            <input type="number" id="bag-qty" class="quantity" value="1" min="1" />
+            <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value)">Add to Cart</button>
+            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product" data-aos="fade-up" data-aos-delay="500">
+            <img src="https://i.ibb.co/QjT7G3NS/6.png" alt="Custom Phone Case">
+            <h2>Custom Phone Case</h2>
+            <p>Start From: ₱39.00/pc</p>
+            <label for="phone-case-qty">Quantity:</label>
+            <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" />
+            <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value)">Add to Cart</button>
+            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product" data-aos="fade-up" data-aos-delay="600">
+            <img src="https://i.ibb.co/sdX5bsDZ/4.png" alt="Custom Baseball Jacket">
+            <h2>Custom Baseball Jacket</h2>
+            <p>Start From: ₱309.00/pc</p>
+            <label for="jacket-qty">Quantity:</label>
+            <input type="number" id="jacket-qty" class="quantity" value="1" min="1" />
+            <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value)">Add to Cart</button>
+            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product" data-aos="fade-up" data-aos-delay="700">
+            <img src="https://i.ibb.co/nd1jSXJ/7.png" alt="Custom Towel">
+            <h2>Custom Towel</h2>
+            <p>Start From: ₱139.00/pc</p>
+            <label for="towel-qty">Quantity:</label>
+            <input type="number" id="towel-qty" class="quantity" value="1" min="1" />
+            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value)">Add to Cart</button>
+            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product" data-aos="fade-up" data-aos-delay="800">
+            <img src="https://i.ibb.co/gMWpVnxH/8.png" alt="Custom Hotel Slipper">
+            <h2>Custom Hotel Slipper</h2>
+            <p>Start From: ₱35.00/pc</p>
+            <label for="slipper-qty">Quantity:</label>
+            <input type="number" id="slipper-qty" class="quantity" value="1" min="1" />
+            <button class="button" onclick="addToCart('Custom Hotel Slipper', 35.00, document.getElementById('slipper-qty').value)">Add to Cart</button>
+            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+        </div>
     </div>
 
     <!-- Cart Summary -->
@@ -231,18 +263,17 @@
     <!-- Toast Notification -->
     <div id="toast">Added to cart!</div>
 
+    <footer>
+        <p>&copy; 2025 MARIE CUSTOM GOODS - NCR. All rights reserved. <br>For inquiries, contact us at <a href="mailto:info@mariecustomgoods.com">info@mariecustomgoods.com</a></p>
+    </footer>
+
     <script>
         let cart = [];
 
-        // Theme Toggle
-        document.getElementById('theme-toggle').onclick = () => {
-            document.body.classList.toggle('dark-mode');
-        };
-
         // Function to add items to the cart
-        function addToCart(itemName, price, quantity) {
+        function addToCart(itemName, price, quantity, customText = "", customColor = "") {
             quantity = parseInt(quantity);
-            let item = { itemName, price, quantity, totalPrice: price * quantity };
+            let item = { itemName, price, quantity, customText, customColor, totalPrice: price * quantity };
             cart.push(item);
             updateCart();
             showToast();
@@ -252,7 +283,7 @@
         function updateCart() {
             let cartItems = document.getElementById("cart-items");
             let cartCount = document.querySelector(".cart-count");
-            cartItems.innerHTML = ''; 
+            cartItems.innerHTML = '';
             let total = 0;
 
             cart.forEach(item => {
@@ -262,12 +293,15 @@
                 total += item.totalPrice;
             });
 
+            // Update cart item count
             cartCount.textContent = cart.length;
 
+            // Optionally add the total at the bottom
             let totalItem = document.createElement("li");
             totalItem.textContent = `Total: ₱${total.toFixed(2)}`;
             cartItems.appendChild(totalItem);
 
+            // Persist the cart in localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
         }
 
@@ -283,6 +317,7 @@
             let orderSummary = "Order Summary:\n";
             let total = 0;
 
+            // Create the order details for Telegram
             cart.forEach(item => {
                 orderSummary += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}\n`;
                 total += item.totalPrice;
@@ -291,21 +326,11 @@
             orderSummary += `\nTotal: ₱${total.toFixed(2)}`;
             orderSummary += "\n\nPlease confirm your order.";
 
-            // Send order details to Telegram
-            let telegramBotUrl = "https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage";
-            let chatId = "YOUR_CHAT_ID";
-            let message = encodeURIComponent(orderSummary);
+            // Telegram bot link
+            let telegramBotLink = "https://t.me/MarieGTBot?text=" + encodeURIComponent(orderSummary);
 
-            fetch(`${telegramBotUrl}?chat_id=${chatId}&text=${message}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        window.location.href = 'https://t.me/MarieGTBot';
-                    } else {
-                        alert("There was an issue with the order. Please try again.");
-                    }
-                })
-                .catch(error => alert("Error sending message: " + error));
+            // Redirect to Telegram with the order message
+            window.location.href = telegramBotLink;
         }
 
         // Cart Persistence with localStorage
@@ -316,13 +341,6 @@
                 updateCart();
             }
         }
-
-        // Initialize AOS
-        AOS.init();
     </script>
-
-    <footer>
-        <p>&copy; 2025 MARIE CUSTOM GOODS - NCR. All rights reserved. <br>For inquiries, contact us at <a href="mailto:info@mariecustomgoods.com">info@mariecustomgoods.com</a></p>
-    </footer>
 </body>
 </html>
