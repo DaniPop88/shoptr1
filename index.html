@@ -201,6 +201,10 @@
             border-radius: 8px;
             z-index: 100;
         }
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -235,7 +239,7 @@
         </div>
     </div>
 
-    <div class="products">
+    <div class="products" id="products">
         <!-- Product 1 -->
         <div class="product">
             <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt">
@@ -326,9 +330,12 @@
     </div>
 
     <div class="testimonials">
-        <h2>Testimonials</h2>
+        <h2>TESTIMONIALS</h2>
         <p>“I love my custom t-shirt! The print quality is amazing, and the fit is perfect.” — Carla M., Quezon City</p>
         <p>“Marie Custom Goods made a beautiful canvas print for my office. It’s exactly what I envisioned!” — John R., Pasig</p>
+        <p>“The custom mug I ordered is fantastic! The colors are vibrant and it’s the perfect gift for my friend. Highly recommend!” — Maria L., Makati</p>
+        <p>“Fast shipping and high-quality prints. The custom phone case fits my phone perfectly, and I love the design. Will definitely order again!” — Grace F., Quezon City</p>
+        <p>“I was looking for a personalized gift for my sister’s birthday, and the custom t-shirt from Marie Custom Goods was a huge hit! She loved it.” — Joseph D., Parañaque</p>
     </div>
 
     <div class="cart">
@@ -340,12 +347,11 @@
     <div id="toast">Added to cart!</div>
 
     <footer>
-        <p>&copy; 2025 MARIE CUSTOM GOODS - NCR. All rights reserved. <br>For inquiries, contact us at <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a></p>
+        <p>&copy; DTI Permit # 7654321 | 2023 MARIE CUSTOM GOODS - NCR. All rights reserved. <br>For inquiries, contact us at <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a></p>
     </footer>
 
     <script>
         let cart = [];
-
         function addToCart(itemName, price, quantity, customText = "", customColor = "") {
             quantity = parseInt(quantity);
             let item = { itemName, price, quantity, customText, customColor, totalPrice: price * quantity };
