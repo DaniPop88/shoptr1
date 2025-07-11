@@ -192,29 +192,36 @@
         }
         .cart-btn-fixed {
             position: fixed;
-            bottom: 18px;
-            right: 18px;
+            bottom: 38px;
+            right: 38px;
             background: #155824;
             color: #fff;
             border-radius: 50%;
-            width: 64px; height: 64px;
-            font-size: 2.5em;
+            width: 84px;         /* bigger cart button */
+            height: 84px;        /* bigger cart button */
+            font-size: 2.5em;    /* original size (not 3.2em) */
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 8px 24px rgba(0,0,0,0.22);
+            box-shadow: 0px 8px 32px rgba(0,0,0,0.28), 0 0 0 6px #ddcf0e99;
             cursor: pointer;
             z-index: 99;
+            transition: box-shadow 0.2s, transform 0.15s;
         }
+        .cart-btn-fixed:hover, .cart-btn-fixed:focus {
+            box-shadow: 0px 12px 40px rgba(0,0,0,0.35), 0 0 0 8px #ddcf0e;
+            transform: scale(1.07);
+        }
+        
         .cart-btn-fixed .cart-count {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 8px;   /* original position */
+            right: 8px; /* original position */
             background: #ddcf0e;
             color: #000;
             border-radius: 50%;
-            padding: 3px 8px;
-            font-size: .9em;
+            padding: 2px 7px;   /* original badge size */
+            font-size: .8em;    /* original badge font size */
         }
 
         footer {
@@ -356,103 +363,87 @@
     </section>
 
     <section class="products" id="products" aria-label="Products">
-        <!-- Product 1 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt" loading="lazy" width="250" height="250">
-            <h2>Custom T-Shirt</h2>
-            <p>Start From: ₱129.00/pc</p>
-            <label for="tshirt-qty">Quantity:</label>
-            <input type="number" id="tshirt-qty" class="quantity" value="1" min="1" aria-label="T-Shirt Quantity" />
-            <label for="custom-text-tshirt">Custom Text:</label>
-            <input type="text" id="custom-text-tshirt" maxlength="20" placeholder="Add your text" aria-label="Custom Text for T-Shirt"/>
-            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value, document.getElementById('custom-text-tshirt').value)" aria-label="Add T-Shirt to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom T-Shirt')" aria-label="Request Bulk Discount T-Shirt">Request Bulk Discount</button>
-        </div>
-        <!-- Product 2 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/TB9Nhr8T/1.png" alt="Custom Mug" loading="lazy" width="250" height="250">
-            <h2>Custom Mug</h2>
-            <p>Start From: ₱79.00/pc</p>
-            <label for="mug-qty">Quantity:</label>
-            <input type="number" id="mug-qty" class="quantity" value="1" min="1" aria-label="Mug Quantity"/>
-            <label for="custom-text-mug">Custom Text:</label>
-            <input type="text" id="custom-text-mug" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Mug"/>
-            <button class="button" onclick="addToCart('Custom Mug', 79.00, document.getElementById('mug-qty').value, document.getElementById('custom-text-mug').value)" aria-label="Add Mug to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom Mug')" aria-label="Request Bulk Discount Mug">Request Bulk Discount</button>
-        </div>
-        <!-- Product 3 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/gLvmgNmf/3.png" alt="Custom Hat" loading="lazy" width="250" height="250">
-            <h2>Custom Hat</h2>
-            <p>Start From: ₱99.00/pc</p>
-            <label for="hat-qty">Quantity:</label>
-            <input type="number" id="hat-qty" class="quantity" value="1" min="1" aria-label="Hat Quantity"/>
-            <label for="custom-text-hat">Custom Text:</label>
-            <input type="text" id="custom-text-hat" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Hat"/>
-            <button class="button" onclick="addToCart('Custom Hat', 99.00, document.getElementById('hat-qty').value, document.getElementById('custom-text-hat').value)" aria-label="Add Hat to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom Hat')" aria-label="Request Bulk Discount Hat">Request Bulk Discount</button>
-        </div>
-        <!-- Product 4 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/zL0N1v3/5.png" alt="Custom Sling Bag" loading="lazy" width="250" height="250">
-            <h2>Custom Bag</h2>
-            <p>Start From: ₱229.00/pc</p>
-            <label for="bag-qty">Quantity:</label>
-            <input type="number" id="bag-qty" class="quantity" value="1" min="1" aria-label="Bag Quantity"/>
-            <label for="custom-text-bag">Custom Text:</label>
-            <input type="text" id="custom-text-bag" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Bag"/>
-            <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value, document.getElementById('custom-text-bag').value)" aria-label="Add Bag to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom Sling Bag')" aria-label="Request Bulk Discount Bag">Request Bulk Discount</button>
-        </div>
-        <!-- Product 5 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/QjT7G3NS/6.png" alt="Custom Phone Case" loading="lazy" width="250" height="250">
-            <h2>Custom Phone Case</h2>
-            <p>Start From: ₱39.00/pc</p>
-            <label for="phone-case-qty">Quantity:</label>
-            <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" aria-label="Phone Case Quantity"/>
-            <label for="custom-text-phonecase">Custom Text:</label>
-            <input type="text" id="custom-text-phonecase" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Phone Case"/>
-            <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value, document.getElementById('custom-text-phonecase').value)" aria-label="Add Phone Case to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom Phone Case')" aria-label="Request Bulk Discount Phone Case">Request Bulk Discount</button>
-        </div>
-        <!-- Product 6 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/sdX5bsDZ/4.png" alt="Custom Jacket" loading="lazy" width="250" height="250">
-            <h2>Custom Jacket</h2>
-            <p>Start From: ₱309.00/pc</p>
-            <label for="jacket-qty">Quantity:</label>
-            <input type="number" id="jacket-qty" class="quantity" value="1" min="1" aria-label="Jacket Quantity"/>
-            <label for="custom-text-jacket">Custom Text:</label>
-            <input type="text" id="custom-text-jacket" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Jacket"/>
-            <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value, document.getElementById('custom-text-jacket').value)" aria-label="Add Jacket to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom Jacket')" aria-label="Request Bulk Discount Jacket">Request Bulk Discount</button>
-        </div>
-        <!-- Product 7 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/nd1jSXJ/7.png" alt="Custom Towel" loading="lazy" width="250" height="250">
-            <h2>Custom Towel</h2>
-            <p>Start From: ₱139.00/pc</p>
-            <label for="towel-qty">Quantity:</label>
-            <input type="number" id="towel-qty" class="quantity" value="1" min="1" aria-label="Towel Quantity"/>
-            <label for="custom-text-towel">Custom Text:</label>
-            <input type="text" id="custom-text-towel" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Towel"/>
-            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value, document.getElementById('custom-text-towel').value)" aria-label="Add Towel to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom Towel')" aria-label="Request Bulk Discount Towel">Request Bulk Discount</button>
-        </div>
-        <!-- Product 8 -->
-        <div class="product" tabindex="0">
-            <img src="https://i.ibb.co/gMWpVnxH/8.png" alt="Custom Hotel Slipper" loading="lazy" width="250" height="250">
-            <h2>Custom Hotel Slipper</h2>
-            <p>Start From: ₱150.00/pc</p>
-            <label for="slipper-qty">Quantity:</label>
-            <input type="number" id="slipper-qty" class="quantity" value="1" min="1" aria-label="Slipper Quantity"/>
-            <label for="custom-text-slipper">Custom Text:</label>
-            <input type="text" id="custom-text-slipper" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Slipper"/>
-            <button class="button" onclick="addToCart('Custom Hotel Slipper', 150.00, document.getElementById('slipper-qty').value, document.getElementById('custom-text-slipper').value)" aria-label="Add Hotel Slipper to Cart">Add to Cart</button>
-            <button class="button" onclick="showBulkModal('Custom Hotel Slipper')" aria-label="Request Bulk Discount Hotel Slipper">Request Bulk Discount</button>
-        </div>
-    </section>
+    <!-- Product 1 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt" loading="lazy" width="250" height="250">
+        <h2>Custom T-Shirt</h2>
+        <p>Start From: ₱129.00/pc</p>
+        <label for="tshirt-qty">Quantity:</label>
+        <input type="number" id="tshirt-qty" class="quantity" value="1" min="1" aria-label="T-Shirt Quantity" />
+        <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value)" aria-label="Add T-Shirt to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom T-Shirt')" aria-label="Request Bulk Discount T-Shirt">Request Bulk Discount</button>
+    </div>
+    <!-- Product 2 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/TB9Nhr8T/1.png" alt="Custom Mug" loading="lazy" width="250" height="250">
+        <h2>Custom Mug</h2>
+        <p>Start From: ₱79.00/pc</p>
+        <label for="mug-qty">Quantity:</label>
+        <input type="number" id="mug-qty" class="quantity" value="1" min="1" aria-label="Mug Quantity"/>
+        <button class="button" onclick="addToCart('Custom Mug', 79.00, document.getElementById('mug-qty').value)" aria-label="Add Mug to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom Mug')" aria-label="Request Bulk Discount Mug">Request Bulk Discount</button>
+    </div>
+    <!-- Product 3 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/gLvmgNmf/3.png" alt="Custom Hat" loading="lazy" width="250" height="250">
+        <h2>Custom Hat</h2>
+        <p>Start From: ₱99.00/pc</p>
+        <label for="hat-qty">Quantity:</label>
+        <input type="number" id="hat-qty" class="quantity" value="1" min="1" aria-label="Hat Quantity"/>
+        <button class="button" onclick="addToCart('Custom Hat', 99.00, document.getElementById('hat-qty').value)" aria-label="Add Hat to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom Hat')" aria-label="Request Bulk Discount Hat">Request Bulk Discount</button>
+    </div>
+    <!-- Product 4 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/zL0N1v3/5.png" alt="Custom Sling Bag" loading="lazy" width="250" height="250">
+        <h2>Custom Bag</h2>
+        <p>Start From: ₱229.00/pc</p>
+        <label for="bag-qty">Quantity:</label>
+        <input type="number" id="bag-qty" class="quantity" value="1" min="1" aria-label="Bag Quantity"/>
+        <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value)" aria-label="Add Bag to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom Sling Bag')" aria-label="Request Bulk Discount Bag">Request Bulk Discount</button>
+    </div>
+    <!-- Product 5 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/QjT7G3NS/6.png" alt="Custom Phone Case" loading="lazy" width="250" height="250">
+        <h2>Custom Phone Case</h2>
+        <p>Start From: ₱39.00/pc</p>
+        <label for="phone-case-qty">Quantity:</label>
+        <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" aria-label="Phone Case Quantity"/>
+        <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value)" aria-label="Add Phone Case to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom Phone Case')" aria-label="Request Bulk Discount Phone Case">Request Bulk Discount</button>
+    </div>
+    <!-- Product 6 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/sdX5bsDZ/4.png" alt="Custom Jacket" loading="lazy" width="250" height="250">
+        <h2>Custom Jacket</h2>
+        <p>Start From: ₱309.00/pc</p>
+        <label for="jacket-qty">Quantity:</label>
+        <input type="number" id="jacket-qty" class="quantity" value="1" min="1" aria-label="Jacket Quantity"/>
+        <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value)" aria-label="Add Jacket to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom Jacket')" aria-label="Request Bulk Discount Jacket">Request Bulk Discount</button>
+    </div>
+    <!-- Product 7 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/nd1jSXJ/7.png" alt="Custom Towel" loading="lazy" width="250" height="250">
+        <h2>Custom Towel</h2>
+        <p>Start From: ₱139.00/pc</p>
+        <label for="towel-qty">Quantity:</label>
+        <input type="number" id="towel-qty" class="quantity" value="1" min="1" aria-label="Towel Quantity"/>
+        <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value)" aria-label="Add Towel to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom Towel')" aria-label="Request Bulk Discount Towel">Request Bulk Discount</button>
+    </div>
+    <!-- Product 8 -->
+    <div class="product" tabindex="0">
+        <img src="https://i.ibb.co/gMWpVnxH/8.png" alt="Custom Hotel Slipper" loading="lazy" width="250" height="250">
+        <h2>Custom Hotel Slipper</h2>
+        <p>Start From: ₱150.00/pc</p>
+        <label for="slipper-qty">Quantity:</label>
+        <input type="number" id="slipper-qty" class="quantity" value="1" min="1" aria-label="Slipper Quantity"/>
+        <button class="button" onclick="addToCart('Custom Hotel Slipper', 150.00, document.getElementById('slipper-qty').value)" aria-label="Add Hotel Slipper to Cart">Add to Cart</button>
+        <button class="button" onclick="showBulkModal('Custom Hotel Slipper')" aria-label="Request Bulk Discount Hotel Slipper">Request Bulk Discount</button>
+    </div>
+</section>
 
     <section class="why-marie" aria-label="Why Print With Us">
         <h2>Why PRINT with us?</h2>
