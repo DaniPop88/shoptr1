@@ -3,84 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCG</title>
+    <title>Marie Custom Goods - NCR</title>
+    <meta name="description" content="Marie Custom Goods - Your go-to shop for personalized prints & custom products in Metro Manila. Unlimited customization, premium quality, and fast delivery.">
+    <meta property="og:title" content="Marie Custom Goods - NCR">
+    <meta property="og:description" content="Your go-to shop for personalized prints & custom products in Metro Manila. Unlimited customization, premium quality, and fast delivery.">
+    <meta property="og:image" content="https://i.ibb.co/0pxHp7H2/1.png">
+    <meta property="og:url" content="https://mariecustomgoods.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/0pxHp7H2/1.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Store",
+      "name": "Marie Custom Goods - NCR",
+      "image": "https://i.ibb.co/0pxHp7H2/1.png",
+      "telephone": "+63 2 7990 4420",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Unit 12, Creative Tower, 124 EDSA Extension, Greenhills, San Juan City",
+        "addressLocality": "Metro Manila",
+        "postalCode": "1503",
+        "addressCountry": "PH"
+      }
+    }
+    </script>
     <style>
+        /* Reset */
+        html { scroll-behavior: smooth; }
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        h1, h2, h3 { margin-top: 0; }
+
+        /* Header */
         header {
-            background: linear-gradient(to bottom, #28a745, #155824); /* Gradient green */
-            color: white;
+            background: linear-gradient(to bottom, #28a745, #155824);
+            color: #fff;
             text-align: center;
             padding: 20px;
             font-size: 2em;
         }
+
+        /* Hero */
         .hero {
             text-align: center;
             padding: 40px;
             background-color: #155824;
-            color: white;
+            color: #fff;
         }
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
+        .hero h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .hero p { font-size: 1.5em; margin-bottom: 20px; }
         .hero .cta-button {
             padding: 15px 30px;
             background-color: #ddcf0e;
-            color: black;
+            color: #000;
             text-decoration: none;
             font-size: 1.2em;
             border-radius: 5px;
-        }
-        .why-marie {
-            background-color: #e8f5e9;
-            padding: 40px;
-            text-align: center;
-        }
-        .why-marie h2 {
-            margin-bottom: 20px;
-            font-size: 2.5em;
             font-weight: bold;
-            color: #155824;
         }
+        .hero .cta-button:focus { outline: 2px solid #155824; }
+
+        /* Why Marie Section */
+        .why-marie { background-color: #e8f5e9; padding: 40px; text-align: center; }
+        .why-marie h2 { margin-bottom: 20px; font-size: 2.5em; font-weight: bold; color: #155824; }
         .why-marie-content {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 10px;
         }
         .why-item {
-            width: 300px;
+            width: 280px;
             padding: 15px;
-            background-color: white;
+            background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+            transition: transform 0.3s;
             margin-bottom: 10px;
             text-align: center;
         }
-        .why-item:hover {
-            transform: scale(1.05);
-        }
+        .why-item:hover, .why-item:focus { transform: scale(1.05); }
         .why-icon {
             width: 50px;
             height: 50px;
-            margin-bottom: 0px;
+            margin-bottom: 0;
             animation: popInOut 2s ease-in-out infinite;
         }
-        .why-item h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #155824;
-        }
-        .why-item p {
-            font-size: 1.1em;
-            color: #333;
-            line-height: 1.5;
-        }
+        .why-item h3 { font-size: 1.5em; margin-bottom: 10px; color: #155824; }
+        .why-item p { font-size: 1.1em; color: #222; line-height: 1.5; }
+
+        /* Products */
         .products {
             display: flex;
             justify-content: center;
@@ -89,177 +100,160 @@
             margin: 20px;
         }
         .product {
-            background-color: white;
+            background-color: #fff;
             border: 1px solid #ddd;
             padding: 15px;
-            text-align: center;
             width: 250px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+            text-align: center;
+            transition: transform 0.2s;
+            position: relative;
         }
-        .product:hover {
-            transform: scale(1.05);
-        }
+        .product:focus, .product:hover { transform: scale(1.05); }
         .product img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
+            aspect-ratio: 1/1;
         }
-        .button {
+        .button, input[type="color"] {
             background-color: #ddcf0e;
-            color: rgb(0, 0, 0);
+            color: #000;
             padding: 10px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.10);
             margin-bottom: 10px;
+            font-size: 1em;
         }
-        .button:hover {
-            background-color: #39b300;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        .cart {
-            position: fixed;
-            top: 50%;
-            right: 10px;
-            background: linear-gradient(135deg, #ffffff, #f1f1f1);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-            transform: translateY(-50%);
-            width: 250px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            z-index: 10;
-        }
-        .cart:hover {
-            transform: translateY(-50%) scale(1.05);
-        }
-        .cart h3 {
-            margin: 0;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .cart ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .cart ul li {
-            padding: 5px 0;
-        }
-        .quantity {
+        .button:hover, .button:focus { background-color: #39b300; box-shadow: 0px 8px 20px rgba(0,0,0,0.20); outline: none; }
+        .quantity, input[type="text"] {
             margin-top: 10px;
             padding: 5px;
             width: 60px;
             text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
-        .cart .cart-count {
+        input[type="color"] { width: 40px; height: 36px; display: inline-block; vertical-align: middle; margin-left: 5px; }
+
+        /* Cart Modal */
+        .cart-backdrop {
+            display: none;
+            position: fixed;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: linear-gradient(135deg, #fff, #f1f1f1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.20);
+            width: 320px;
+            max-width: 98vw;
+            z-index: 101;
+            border: 3px solid transparent;
+            text-align: center;
+        }
+        .cart-modal.highlight { box-shadow: 0 0 0 4px #ddcf0e, 0px 8px 20px rgba(0,0,0,0.20); border-color: #ddcf0e; }
+        .cart-modal h3 { margin: 0; font-size: 1.2em; font-weight: bold; }
+        .cart-modal ul { list-style: none; padding: 0; margin: 0; }
+        .cart-modal ul li { padding: 5px 0; display: flex; justify-content: space-between; align-items: center; }
+        .cart-modal .remove-item-btn {
+            margin-left: 10px;
+            background: none;
+            border: none;
+            color: #c02618;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .cart-modal .remove-item-btn:focus { outline: 2px solid #c02618; }
+        .empty-cart-msg { color: #888; font-style: italic; padding: 10px 0; }
+        .cart-modal .cart-count {
             background-color: #c02618;
-            color: white;
+            color: #fff;
             padding: 3px 8px;
             border-radius: 15px;
-            font-size: 0.9em;
+            font-size: .9em;
             position: absolute;
             top: 5px;
             right: 5px;
         }
+        .cart-btn-fixed {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #155824;
+            color: #fff;
+            border-radius: 50%;
+            width: 60px; height: 60px;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.20);
+            cursor: pointer;
+            z-index: 99;
+        }
+        .cart-btn-fixed .cart-count {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: #ddcf0e;
+            color: #000;
+            border-radius: 50%;
+            padding: 3px 8px;
+            font-size: .9em;
+        }
+
+        /* Footer */
         footer {
-            background: linear-gradient(to bottom, #155824, #000000);
-            color: white;
+            background: linear-gradient(to bottom, #155824, #000);
+            color: #fff;
             padding: 20px 10px;
             text-align: center;
-            font-size: 0.9em;
+            font-size: .9em;
         }
-        footer a {
-            color: #28a745;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        .testimonials {
-            background-color: #f1f1f1;
-            padding: 40px;
-            text-align: center;
-        }
-        .testimonials h2 {
-            margin-bottom: 20px;
-        }
-        #toast {
-            display: none;
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #28a745;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 100;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        @keyframes popInOut {
-            0% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
+        footer a { color: #28a745; text-decoration: none; font-weight: bold; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Testimonials */
+        .testimonials { background-color: #f1f1f1; padding: 40px; text-align: center; }
+        .testimonials h2 { margin-bottom: 20px; }
         #testimonial-slider {
             display: flex;
             flex-direction: column;
             overflow: hidden;
             height: 150px;
             position: relative;
-            transition: transform 0.5s ease;
+            transition: transform .5s;
+            margin-bottom: 20px;
         }
-        #testimonial-slider p {
-            display: none;
-            padding: 15px;
-            font-size: 1.2em;
-            color: #333;
-            line-height: 1.5;
-            text-align: center;
-            font-style: italic;
-        }
-        #testimonial-slider p.active {
-            display: block;
-        }
-        /* FAQ and Contact Us */
+        #testimonial-slider p { display: none; padding: 15px; font-size: 1.2em; color: #333; line-height: 1.5; text-align: center; font-style: italic;}
+        #testimonial-slider p.active { display: block; }
+        .testimonial-controls { display: flex; justify-content: center; gap: 10px; }
+        .testimonial-controls button { background: #ddcf0e; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+        .testimonial-controls button:focus { outline: 2px solid #155824; }
+
+        /* FAQ & Contact */
         .faq, .contact {
             background-color: #fff;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.10);
         }
-        .faq h3, .contact h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: #155824;
-        }
-        .faq p, .contact p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .faq p span, .contact p span {
-            font-weight: bold;
-            color: #155824;
-        }
+        .faq h3, .contact h3 { font-size: 1.8em; margin-bottom: 15px; color: #155824; }
+        .faq p, .contact p { font-size: 1.1em; color: #333; margin-bottom: 10px; }
+        .faq p span, .contact p span { font-weight: bold; color: #155824; }
         .info-section {
             display: flex;
             justify-content: center;
@@ -268,143 +262,226 @@
             max-width: 1100px;
             margin: 40px auto 20px auto;
         }
-        .info-section .contact, 
-        .info-section .faq {
-            flex: 1 1 0;
-            min-width: 320px;
-            margin: 0;
-            box-sizing: border-box;
+        .info-section .contact, .info-section .faq { flex: 1 1 0; min-width: 320px; margin: 0; box-sizing: border-box; }
+
+        /* Bulk Discount Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #fff;
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            z-index: 201;
+            max-width: 98vw;
+            min-width: 300px;
+        }
+
+        /* Toast */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 300;
+            font-size: 1.2em;
+        }
+
+        /* Animation */
+        @keyframes popInOut {
+            0% { transform: scale(.8); opacity: 0;}
+            50% { transform: scale(1.1); opacity: 1;}
+            100% { transform: scale(1); opacity: 1;}
+        }
+
+        /* Responsive */
         @media (max-width: 800px) {
-            .info-section {
-                flex-direction: column;
-                gap: 20px;
-                max-width: 98vw;
-            }
-            .info-section .contact, 
-            .info-section .faq {
-                min-width: 0;
-                width: 100%;
-            }
+            .info-section { flex-direction: column; gap: 20px; max-width: 98vw;}
+            .info-section .contact, .info-section .faq { min-width: 0; width: 100%;}
+            .products { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 500px) {
+            .product { width: 95vw; }
+            .cart-modal { width: 96vw;}
         }
     </style>
+    <!-- Analytics Placeholder -->
+    <!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X" async></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-XXXXXXX-X');</script> -->
 </head>
 <body>
     <header>
-        <h1>MCG - NCR</h1>
+        <nav aria-label="Main Navigation">
+            <h1>MCG - NCR</h1>
+        </nav>
     </header>
 
-    <div class="hero">
+    <main>
+    <section class="hero">
         <h1>MARIE CUSTOM GOODS</h1>
         <p>Your go-to shop for personalized prints & custom products</p>
-        <a href="#products" class="cta-button">Start Designing</a>
-    </div>
+    </section>
 
-    <div class="why-marie">
+    <section class="why-marie" aria-label="Why Print With Us">
         <h2>Why PRINT with us?</h2>
         <div class="why-marie-content">
-            <div class="why-item">
-                <img src="https://i.ibb.co/0pxHp7H2/1.png" alt="Unlimited Customization" class="why-icon">
+            <div class="why-item" tabindex="0">
+                <img src="https://i.ibb.co/0pxHp7H2/1.png" alt="Unlimited Customization" class="why-icon" loading="lazy" width="50" height="50">
                 <h3>Unlimited Customization</h3>
                 <p>Choose from a wide range of products and create your unique design with our easy-to-use online tool. Whether it's text, images, logos, or colors, the possibilities are endless.</p>
             </div>
-            <div class="why-item">
-                <img src="https://i.ibb.co/vxgKxLhn/2.png" alt="Premium Quality Prints" class="why-icon">
+            <div class="why-item" tabindex="0">
+                <img src="https://i.ibb.co/vxgKxLhn/2.png" alt="Premium Quality Prints" class="why-icon" loading="lazy" width="50" height="50">
                 <h3>Premium Quality Prints</h3>
                 <p>Our prints feature high-definition quality with vibrant colors. We use durable materials, ensuring that your custom items not only look fantastic but last long, even with frequent use.</p>
             </div>
-            <div class="why-item">
-                <img src="https://i.ibb.co/7Jch33KP/3.png" alt="Fast Delivery" class="why-icon">
+            <div class="why-item" tabindex="0">
+                <img src="https://i.ibb.co/7Jch33KP/3.png" alt="Fast Delivery" class="why-icon" loading="lazy" width="50" height="50">
                 <h3>Fast Delivery</h3>
                 <p>We understand the importance of time. That's why we ensure a quick turnaround for all orders. Expect your custom goods to be ready in as little as 48 hours, or sooner if needed.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="products" id="products">
+    <section class="hero">
+        <h2>ABOUT US</h2>
+        <p>Welcome to Marie Custom Goods, where creativity knows no limits! 🎨✨ We’re not just your average printing shop—we're the dream team behind all your wildest custom creations. Whether you want to add a quirky design to your shirt, print your favorite quote on a mug, or make your office pop with personalized posters, we’ve got you covered!</p>
+        <p>Founded by Marie Rodriguez, a self-proclaimed printing enthusiast and design lover, Marie Custom Goods started out as a simple hobby and quickly grew into a full-fledged business dedicated to turning your ideas into reality. We believe everyone deserves to show off their personality through cool, one-of-a-kind products, and we’re here to make that happen.</p>
+        <a href="#products" class="cta-button" aria-label="Start Designing">Start Designing</a>
+    </section>
+
+    <section class="products" id="products" aria-label="Products">
+        <!-- Each product now includes custom text and color options -->
         <!-- Product 1 -->
-        <div class="product">
-            <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt" loading="lazy" width="250" height="250">
             <h2>Custom T-Shirt</h2>
             <p>Start From: ₱129.00/pc</p>
             <label for="tshirt-qty">Quantity:</label>
-            <input type="number" id="tshirt-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="tshirt-qty" class="quantity" value="1" min="1" aria-label="T-Shirt Quantity" />
+            <label for="custom-text-tshirt">Custom Text:</label>
+            <input type="text" id="custom-text-tshirt" maxlength="20" placeholder="Add your text" aria-label="Custom Text for T-Shirt"/>
+            <label for="custom-color-tshirt">Color:</label>
+            <input type="color" id="custom-color-tshirt" value="#ffffff" aria-label="Custom Color for T-Shirt"/>
+            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value, document.getElementById('custom-text-tshirt').value, document.getElementById('custom-color-tshirt').value)" aria-label="Add T-Shirt to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom T-Shirt')" aria-label="Request Bulk Discount T-Shirt">Request Bulk Discount</button>
         </div>
         <!-- Product 2 -->
-        <div class="product">
-            <img src="https://i.ibb.co/TB9Nhr8T/1.png" alt="Custom Coffee Mug">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/TB9Nhr8T/1.png" alt="Custom Mug" loading="lazy" width="250" height="250">
             <h2>Custom Mug</h2>
             <p>Start From: ₱79.00/pc</p>
             <label for="mug-qty">Quantity:</label>
-            <input type="number" id="mug-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Mug', 79.00, document.getElementById('mug-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="mug-qty" class="quantity" value="1" min="1" aria-label="Mug Quantity"/>
+            <label for="custom-text-mug">Custom Text:</label>
+            <input type="text" id="custom-text-mug" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Mug"/>
+            <label for="custom-color-mug">Color:</label>
+            <input type="color" id="custom-color-mug" value="#ffffff" aria-label="Custom Color for Mug"/>
+            <button class="button" onclick="addToCart('Custom Mug', 79.00, document.getElementById('mug-qty').value, document.getElementById('custom-text-mug').value, document.getElementById('custom-color-mug').value)" aria-label="Add Mug to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom Mug')" aria-label="Request Bulk Discount Mug">Request Bulk Discount</button>
         </div>
         <!-- Product 3 -->
-        <div class="product">
-            <img src="https://i.ibb.co/gLvmgNmf/3.png" alt="Custom Hat">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/gLvmgNmf/3.png" alt="Custom Hat" loading="lazy" width="250" height="250">
             <h2>Custom Hat</h2>
             <p>Start From: ₱99.00/pc</p>
             <label for="hat-qty">Quantity:</label>
-            <input type="number" id="hat-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Hat', 99.00, document.getElementById('hat-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="hat-qty" class="quantity" value="1" min="1" aria-label="Hat Quantity"/>
+            <label for="custom-text-hat">Custom Text:</label>
+            <input type="text" id="custom-text-hat" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Hat"/>
+            <label for="custom-color-hat">Color:</label>
+            <input type="color" id="custom-color-hat" value="#ffffff" aria-label="Custom Color for Hat"/>
+            <button class="button" onclick="addToCart('Custom Hat', 99.00, document.getElementById('hat-qty').value, document.getElementById('custom-text-hat').value, document.getElementById('custom-color-hat').value)" aria-label="Add Hat to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom Hat')" aria-label="Request Bulk Discount Hat">Request Bulk Discount</button>
         </div>
         <!-- Product 4 -->
-        <div class="product">
-            <img src="https://i.ibb.co/zL0N1v3/5.png" alt="Custom Sling Bag">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/zL0N1v3/5.png" alt="Custom Sling Bag" loading="lazy" width="250" height="250">
             <h2>Custom Bag</h2>
             <p>Start From: ₱229.00/pc</p>
             <label for="bag-qty">Quantity:</label>
-            <input type="number" id="bag-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="bag-qty" class="quantity" value="1" min="1" aria-label="Bag Quantity"/>
+            <label for="custom-text-bag">Custom Text:</label>
+            <input type="text" id="custom-text-bag" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Bag"/>
+            <label for="custom-color-bag">Color:</label>
+            <input type="color" id="custom-color-bag" value="#ffffff" aria-label="Custom Color for Bag"/>
+            <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value, document.getElementById('custom-text-bag').value, document.getElementById('custom-color-bag').value)" aria-label="Add Bag to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom Sling Bag')" aria-label="Request Bulk Discount Bag">Request Bulk Discount</button>
         </div>
         <!-- Product 5 -->
-        <div class="product">
-            <img src="https://i.ibb.co/QjT7G3NS/6.png" alt="Custom Phone Case">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/QjT7G3NS/6.png" alt="Custom Phone Case" loading="lazy" width="250" height="250">
             <h2>Custom Phone Case</h2>
             <p>Start From: ₱39.00/pc</p>
             <label for="phone-case-qty">Quantity:</label>
-            <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" aria-label="Phone Case Quantity"/>
+            <label for="custom-text-phonecase">Custom Text:</label>
+            <input type="text" id="custom-text-phonecase" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Phone Case"/>
+            <label for="custom-color-phonecase">Color:</label>
+            <input type="color" id="custom-color-phonecase" value="#ffffff" aria-label="Custom Color for Phone Case"/>
+            <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value, document.getElementById('custom-text-phonecase').value, document.getElementById('custom-color-phonecase').value)" aria-label="Add Phone Case to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom Phone Case')" aria-label="Request Bulk Discount Phone Case">Request Bulk Discount</button>
         </div>
         <!-- Product 6 -->
-        <div class="product">
-            <img src="https://i.ibb.co/sdX5bsDZ/4.png" alt="Custom Baseball Jacket">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/sdX5bsDZ/4.png" alt="Custom Jacket" loading="lazy" width="250" height="250">
             <h2>Custom Jacket</h2>
             <p>Start From: ₱309.00/pc</p>
             <label for="jacket-qty">Quantity:</label>
-            <input type="number" id="jacket-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="jacket-qty" class="quantity" value="1" min="1" aria-label="Jacket Quantity"/>
+            <label for="custom-text-jacket">Custom Text:</label>
+            <input type="text" id="custom-text-jacket" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Jacket"/>
+            <label for="custom-color-jacket">Color:</label>
+            <input type="color" id="custom-color-jacket" value="#ffffff" aria-label="Custom Color for Jacket"/>
+            <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value, document.getElementById('custom-text-jacket').value, document.getElementById('custom-color-jacket').value)" aria-label="Add Jacket to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom Jacket')" aria-label="Request Bulk Discount Jacket">Request Bulk Discount</button>
         </div>
         <!-- Product 7 -->
-        <div class="product">
-            <img src="https://i.ibb.co/nd1jSXJ/7.png" alt="Custom Towel">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/nd1jSXJ/7.png" alt="Custom Towel" loading="lazy" width="250" height="250">
             <h2>Custom Towel</h2>
             <p>Start From: ₱139.00/pc</p>
             <label for="towel-qty">Quantity:</label>
-            <input type="number" id="towel-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="towel-qty" class="quantity" value="1" min="1" aria-label="Towel Quantity"/>
+            <label for="custom-text-towel">Custom Text:</label>
+            <input type="text" id="custom-text-towel" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Towel"/>
+            <label for="custom-color-towel">Color:</label>
+            <input type="color" id="custom-color-towel" value="#ffffff" aria-label="Custom Color for Towel"/>
+            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value, document.getElementById('custom-text-towel').value, document.getElementById('custom-color-towel').value)" aria-label="Add Towel to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom Towel')" aria-label="Request Bulk Discount Towel">Request Bulk Discount</button>
         </div>
         <!-- Product 8 -->
-        <div class="product">
-            <img src="https://i.ibb.co/gMWpVnxH/8.png" alt="Custom Hotel Slipper">
+        <div class="product" tabindex="0">
+            <img src="https://i.ibb.co/gMWpVnxH/8.png" alt="Custom Hotel Slipper" loading="lazy" width="250" height="250">
             <h2>Custom Hotel Slipper</h2>
             <p>Start From: ₱150.00/pc</p>
             <label for="slipper-qty">Quantity:</label>
-            <input type="number" id="slipper-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Hotel Slipper', 150.00, document.getElementById('slipper-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
+            <input type="number" id="slipper-qty" class="quantity" value="1" min="1" aria-label="Slipper Quantity"/>
+            <label for="custom-text-slipper">Custom Text:</label>
+            <input type="text" id="custom-text-slipper" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Slipper"/>
+            <label for="custom-color-slipper">Color:</label>
+            <input type="color" id="custom-color-slipper" value="#ffffff" aria-label="Custom Color for Slipper"/>
+            <button class="button" onclick="addToCart('Custom Hotel Slipper', 150.00, document.getElementById('slipper-qty').value, document.getElementById('custom-text-slipper').value, document.getElementById('custom-color-slipper').value)" aria-label="Add Hotel Slipper to Cart">Add to Cart</button>
+            <button class="button" onclick="showBulkModal('Custom Hotel Slipper')" aria-label="Request Bulk Discount Hotel Slipper">Request Bulk Discount</button>
         </div>
-    </div>
+    </section>
 
-    <div class="testimonials">
+    <section class="testimonials" aria-label="Testimonials">
         <h2>TESTIMONIALS</h2>
         <div id="testimonial-slider">
             <p><em>“I love my custom t-shirt! The print quality is amazing, and the fit is perfect.”</em> — Carla M., Quezon City</p>
@@ -413,10 +490,13 @@
             <p><em>“Fast shipping and high-quality prints. The custom phone case fits my phone perfectly, and I love the design. Will definitely order again!”</em> — Grace F., Quezon City</p>
             <p><em>“I was looking for a personalized gift for my sister’s birthday, and the custom t-shirt from Marie Custom Goods was a huge hit! She loved it.”</em> — Joseph D., Parañaque</p>
         </div>
-    </div>
+        <div class="testimonial-controls">
+            <button id="testimonial-prev" aria-label="Previous Testimonial">&lt;</button>
+            <button id="testimonial-next" aria-label="Next Testimonial">&gt;</button>
+        </div>
+    </section>
 
-    <!-- FAQ and Contact Us: Responsive side-by-side or stacked -->
-    <div class="info-section">
+    <section class="info-section" aria-label="Contact and FAQ">
         <div class="contact">
             <h3>Contact Us</h3>
             <p><span>Address:</span><br>
@@ -445,103 +525,234 @@
             <p><span>Q:</span> Are your products eco-friendly?<br>
             <span>A:</span> Yes, we use sustainable materials whenever possible, and our printing processes are designed to minimize waste.</p>
         </div>
-    </div>
+    </section>
+    </main>
 
-    <div class="cart">
+    <!-- Cart Modal and Backdrop -->
+    <div class="cart-backdrop" id="cart-backdrop" tabindex="-1" aria-label="Cart Backdrop"></div>
+    <aside class="cart-modal" id="cart-modal" aria-label="Shopping Cart" tabindex="0">
         <h3>Your Cart <span class="cart-count">0</span></h3>
-        <ul id="cart-items"></ul>
-        <button class="button" onclick="checkout()">Checkout</button>
-        <button class="button" onclick="emptyCart()">Empty Cart</button>
+        <ul id="cart-items" aria-live="polite"></ul>
+        <div class="empty-cart-msg" id="empty-cart-msg" style="display:none;">Your cart is empty.</div>
+        <button class="button" onclick="checkout()" aria-label="Checkout">Checkout</button>
+        <button class="button" onclick="emptyCart()" aria-label="Empty Cart">Empty Cart</button>
+        <button class="button" onclick="closeCart()" aria-label="Close Cart">Close</button>
+    </aside>
+    <div class="cart-btn-fixed" id="cart-btn-fixed" aria-label="Show Cart" tabindex="0" onclick="showCart()">
+        🛒<span class="cart-count">0</span>
     </div>
 
-    <div id="toast">Added to cart!</div>
+    <!-- Bulk Discount Modal -->
+    <div class="modal-backdrop" id="modal-backdrop" tabindex="-1"></div>
+    <div class="modal" id="bulk-modal" aria-label="Bulk Discount Request" tabindex="0">
+        <h3>Request Bulk Discount</h3>
+        <form id="bulk-form" autocomplete="off">
+            <input type="hidden" id="bulk-product"/>
+            <label for="bulk-name">Your Name:</label><br>
+            <input type="text" id="bulk-name" required maxlength="30" style="width:90%;"><br>
+            <label for="bulk-email">Email:</label><br>
+            <input type="email" id="bulk-email" required style="width:90%;"><br>
+            <label for="bulk-quantity">Quantity:</label><br>
+            <input type="number" id="bulk-quantity" min="10" required style="width:90%;"><br>
+            <label for="bulk-details">Details:</label><br>
+            <textarea id="bulk-details" rows="3" maxlength="200" style="width:90%;" placeholder="Describe your needs"></textarea><br>
+            <button class="button" type="submit">Send Request</button>
+            <button class="button" type="button" onclick="closeBulkModal()">Cancel</button>
+        </form>
+    </div>
+
+    <div id="toast" role="status" aria-live="polite">Added to cart!</div>
 
     <footer>
-        <p>&copy; DTI Permit # 7654321 | 2023 MARIE CUSTOM GOODS - NCR. All rights reserved. <br>For inquiries, contact us at <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a></p>
+        <p>&copy; DTI Permit # 7654321 | 2023 MARIE CUSTOM GOODS - NCR. All rights reserved. <br>
+        For inquiries, contact us at <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a></p>
     </footer>
 
     <script>
+        // Cart logic
         let cart = [];
         function addToCart(itemName, price, quantity, customText = "", customColor = "") {
             quantity = parseInt(quantity);
-            let item = { itemName, price, quantity, customText, customColor, totalPrice: price * quantity };
-            cart.push(item);
+            customText = (customText || "").trim();
+            customColor = customColor || "";
+            // Validate input
+            if (isNaN(quantity) || quantity < 1) {
+                alert("Please enter a valid quantity.");
+                return;
+            }
+            if (customText.length > 20) {
+                alert("Custom text must be 20 characters or less.");
+                return;
+            }
+            // Check for existing product (same name, color, text)
+            let existing = cart.find(item =>
+                item.itemName === itemName &&
+                item.customText === customText &&
+                item.customColor === customColor
+            );
+            if (existing) {
+                existing.quantity += quantity;
+                existing.totalPrice = existing.price * existing.quantity;
+            } else {
+                let item = { itemName, price, quantity, customText, customColor, totalPrice: price * quantity };
+                cart.push(item);
+            }
             updateCart();
-            showToast();
+            showToast("Added to cart!");
+            highlightCart();
         }
-
         function updateCart() {
             let cartItems = document.getElementById("cart-items");
-            let cartCount = document.querySelector(".cart-count");
-            cartItems.innerHTML = '';
+            let cartCountEls = document.querySelectorAll(".cart-count");
+            let emptyMsg = document.getElementById("empty-cart-msg");
+            cartItems.innerHTML = "";
             let total = 0;
-
-            cart.forEach(item => {
+            if (cart.length === 0) {
+                emptyMsg.style.display = "";
+            } else {
+                emptyMsg.style.display = "none";
+            }
+            cart.forEach((item, idx) => {
                 let li = document.createElement("li");
-                li.textContent = `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
+                let customDetails = "";
+                if (item.customText) customDetails += ` | "${item.customText}"`;
+                if (item.customColor) customDetails += ` | <span style="background:${item.customColor}; padding:0 8px; border-radius:4px; color:#000;">${item.customColor}</span>`;
+                li.innerHTML = `<span>${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}${customDetails}</span>
+                    <button class="remove-item-btn" aria-label="Remove ${item.itemName} from cart" onclick="removeCartItem(${idx})" tabindex="0">&times;</button>`;
                 cartItems.appendChild(li);
                 total += item.totalPrice;
             });
-
-            cartCount.textContent = cart.length;
-
+            cartCountEls.forEach(el => el.textContent = cart.length);
             let totalItem = document.createElement("li");
             totalItem.textContent = `Total: ₱${total.toFixed(2)}`;
             cartItems.appendChild(totalItem);
-
             localStorage.setItem('cart', JSON.stringify(cart));
         }
-
-        function showToast() {
+        function removeCartItem(idx) {
+            cart.splice(idx, 1);
+            updateCart();
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        function showToast(msg="Added to cart!") {
             const toast = document.getElementById('toast');
+            toast.textContent = msg;
             toast.style.display = 'block';
             setTimeout(() => toast.style.display = 'none', 2000);
         }
-
+        function highlightCart() {
+            const cartDiv = document.getElementById('cart-modal');
+            cartDiv.classList.add('highlight');
+            setTimeout(() => cartDiv.classList.remove('highlight'), 600);
+        }
+        function showCart() {
+            document.getElementById("cart-modal").style.display = "block";
+            document.getElementById("cart-backdrop").style.display = "block";
+        }
+        function closeCart() {
+            document.getElementById("cart-modal").style.display = "none";
+            document.getElementById("cart-backdrop").style.display = "none";
+        }
         function checkout() {
+            if (cart.length === 0) {
+                showToast("Your cart is empty!");
+                return;
+            }
             let orderSummary = "Order Summary:\n";
             let total = 0;
-
             cart.forEach(item => {
-                orderSummary += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}\n`;
+                orderSummary += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
+                if (item.customText) orderSummary += ` | Text: "${item.customText}"`;
+                if (item.customColor) orderSummary += ` | Color: ${item.customColor}`;
+                orderSummary += "\n";
                 total += item.totalPrice;
             });
-
             orderSummary += `\nTotal: ₱${total.toFixed(2)}`;
             orderSummary += "\n\nPlease confirm your order.";
-
-            let telegramBotLink = "https://t.me/MarieGTBot?text=" + encodeURIComponent(orderSummary);
-            window.location.href = telegramBotLink;
+            // Show summary modal instead of immediate redirect
+            if (confirm(orderSummary + "\n\nProceed to Telegram to place your order?")) {
+                let telegramBotLink = "https://t.me/MarieGTBot?text=" + encodeURIComponent(orderSummary);
+                window.open(telegramBotLink, "_blank");
+                closeCart();
+            }
         }
-
         function emptyCart() {
+            if (!confirm("Are you sure you want to empty the cart?")) return;
             cart = [];
             updateCart();
             localStorage.removeItem('cart');
-            alert("Your cart has been emptied!");
+            showToast("Your cart has been emptied!");
         }
+        // Bulk Discount Modal
+        function showBulkModal(productName) {
+            document.getElementById("bulk-product").value = productName;
+            document.getElementById("bulk-modal").style.display = "block";
+            document.getElementById("modal-backdrop").style.display = "block";
+        }
+        function closeBulkModal() {
+            document.getElementById("bulk-modal").style.display = "none";
+            document.getElementById("modal-backdrop").style.display = "none";
+            document.getElementById("bulk-form").reset();
+        }
+        document.getElementById("bulk-form").onsubmit = function(e) {
+            e.preventDefault();
+            // Validate and send
+            let name = document.getElementById("bulk-name").value.trim();
+            let email = document.getElementById("bulk-email").value.trim();
+            let qty = document.getElementById("bulk-quantity").value;
+            let details = document.getElementById("bulk-details").value.trim();
+            let prod = document.getElementById("bulk-product").value;
+            if (!name || !email || !qty || qty < 10) {
+                showToast("Please fill all fields for bulk request.");
+                return false;
+            }
+            let msg = `Bulk Discount Request:\nProduct: ${prod}\nName: ${name}\nEmail: ${email}\nQuantity: ${qty}\nDetails: ${details}\n`;
+            window.open("https://t.me/MarieGTBot?text=" + encodeURIComponent(msg), "_blank");
+            closeBulkModal();
+            showToast("Bulk request sent!");
+            return false;
+        }
+        // Cart modal close on backdrop click
+        document.getElementById("cart-backdrop").onclick = closeCart;
+        document.getElementById("modal-backdrop").onclick = closeBulkModal;
 
+        // Testimonials slider logic
+        let testimonialIdx = 0;
+        let testimonials;
+        function showTestimonial(idx) {
+            testimonials.forEach((testimonial, index) => {
+                testimonial.classList.remove('active');
+            });
+            testimonials[idx].classList.add('active');
+        }
+        function nextTestimonial() {
+            testimonialIdx = (testimonialIdx + 1) % testimonials.length;
+            showTestimonial(testimonialIdx);
+        }
+        function prevTestimonial() {
+            testimonialIdx = (testimonialIdx - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(testimonialIdx);
+        }
+        // On load
         window.onload = function() {
+            // Cart restore
             const savedCart = localStorage.getItem('cart');
             if (savedCart) {
                 cart = JSON.parse(savedCart);
                 updateCart();
+            } else {
+                updateCart();
             }
-
-            let currentIndex = 0;
-            const testimonials = document.querySelectorAll('#testimonial-slider p');
-
-            function showTestimonial() {
-                testimonials.forEach((testimonial, index) => {
-                    testimonial.classList.remove('active');
-                });
-
-                testimonials[currentIndex].classList.add('active');
-                currentIndex = (currentIndex + 1) % testimonials.length;
-            }
-
-            showTestimonial();
-            setInterval(showTestimonial, 3000);
+            // Testimonials
+            testimonials = document.querySelectorAll('#testimonial-slider p');
+            testimonialIdx = 0;
+            showTestimonial(testimonialIdx);
+            setInterval(nextTestimonial, 3000);
+            document.getElementById("testimonial-next").onclick = nextTestimonial;
+            document.getElementById("testimonial-prev").onclick = prevTestimonial;
+            // Keyboard navigation for cart button
+            document.getElementById("cart-btn-fixed").addEventListener("keydown", function(e){
+                if (e.key === "Enter" || e.key === " ") showCart();
+            });
         }
     </script>
 </body>
