@@ -73,13 +73,36 @@
                 <input type="text" id="name" name="name" maxlength="40" required>
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number <span class="required">*</span></label>
-                <input type="tel" id="phone" name="phone" maxlength="15" pattern="^09\d{9}$" placeholder="Ex: 09XXXXXXXXX" required>
+                <label for="organization">Organization (Optional)</label>
+                <input type="text" id="organization" name="organization" maxlength="40">
             </div>
             <div class="form-group">
-                <label for="address">Full Address <span class="required">*</span></label>
-                <textarea id="address" name="address" maxlength="120" placeholder="Street, Barangay, City/Municipality, Province, Postal Code, Region" required></textarea>
-                <small>Must be a valid Philippine address with region and postal code.</small>
+                <label for="street">Street Address <span class="required">*</span></label>
+                <textarea id="street" name="street" maxlength="120" required></textarea>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1;">
+                    <label for="suburb">Suburb <span class="required">*</span></label>
+                    <input type="text" id="suburb" name="suburb" maxlength="30" required>
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label for="city">City <span class="required">*</span></label>
+                    <input type="text" id="city" name="city" maxlength="30" required>
+                </div>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1;">
+                    <label for="postal">Postal Code <span class="required">*</span></label>
+                    <input type="text" id="postal" name="postal" maxlength="8" required pattern="^\d{4,6}$">
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label for="province">Province <span class="required">*</span></label>
+                    <input type="text" id="province" name="province" maxlength="30" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" maxlength="15" pattern="^09\d{9}$" placeholder="Ex: 09XXXXXXXXX" required>
             </div>
             <div class="form-group">
                 <label for="payment">Mode of Payment <span class="required">*</span></label>
@@ -114,20 +137,21 @@
             orderTotal.textContent = `Total: ₱${total.toFixed(2)}`;
         }
 
-        // Simple Philippines address check (just checks "Philippines" or PH in text)
-        function isPhilippinesAddress(address) {
-            // You can improve this logic as needed!
-            return /philippines|ph\b/i.test(address);
-        }
-
         document.getElementById('checkout-form').onsubmit = function(e){
             e.preventDefault();
+            // Collect all fields
             const name = document.getElementById('name').value.trim();
+            const organization = document.getElementById('organization').value.trim();
+            const street = document.getElementById('street').value.trim();
+            const suburb = document.getElementById('suburb').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const postal = document.getElementById('postal').value.trim();
+            const province = document.getElementById('province').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            const address = document.getElementById('address').value.trim();
             const payment = document.getElementById('payment').value;
 
-            if (!name || !phone || !address || !payment) {
+            // Validate required fields
+            if (!name || !street || !suburb || !city || !postal || !province || !phone || !payment) {
                 alert("Please fill out all required fields.");
                 return false;
             }
@@ -139,19 +163,28 @@
                 return false;
             }
 
-            // Validate address (must contain "Philippines" or "PH")
-            if (!isPhilippinesAddress(address)) {
-                alert("Your address must be in the Philippines and include 'Philippines' or 'PH'.");
-                document.getElementById('address').focus();
+            // Validate postal code (4-6 numbers, Philippines)
+            if (!/^\d{4,6}$/.test(postal)) {
+                alert("Please enter a valid Philippine postal code (4 to 6 digits).");
+                document.getElementById('postal').focus();
                 return false;
             }
 
+            // Optionally, validate province/city/suburb (can add a check for "Philippines" in the future if needed)
+
             // For now, just show a summary and "success" message
+            let addressSummary =
+                street + "\n" +
+                suburb + ", " + city + "\n" +
+                province + " " + postal + "\n" +
+                "Philippines";
+
             alert(
                 "Order placed!\n\n" +
                 `Name: ${name}\n` +
+                (organization ? `Organization: ${organization}\n` : '') +
+                `Address:\n${addressSummary}\n` +
                 `Phone: ${phone}\n` +
-                `Address: ${address}\n` +
                 `Payment: ${payment}\n\n` +
                 "Thank you for your order! We will contact you soon."
             );
