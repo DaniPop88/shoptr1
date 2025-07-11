@@ -53,14 +53,14 @@
             gap: 30px;
         }
         .why-item {
-            width: 300px; /* Set a fixed width for each item */
-            padding: 15px; /* Reduced padding to bring the text and icon closer */
+            width: 300px;
+            padding: 15px;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
-            margin-bottom: 10px; /* Adds space between items */
-            text-align: center; /* Ensures text is centered below the icon */
+            margin-bottom: 10px;
+            text-align: center;
         }
         .why-item:hover {
             transform: scale(1.05);
@@ -68,7 +68,8 @@
         .why-icon {
             width: 50px;
             height: 50px;
-            margin-bottom: 0px; /* Reduced the bottom margin to bring it closer to the text */
+            margin-bottom: 0px;
+            animation: popInOut 2s ease-in-out infinite;
         }
         .why-item h3 {
             font-size: 1.5em;
@@ -106,19 +107,19 @@
             border-radius: 8px;
         }
         .button {
-            background-color: #ddcf0e; /* Blue for buttons */
+            background-color: #ddcf0e;
             color: rgb(0, 0, 0);
             padding: 10px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s, box-shadow 0.3s;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Added shadow */
-            margin-bottom: 10px; /* Added space below the buttons */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
         }
         .button:hover {
             background-color: #39b300;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
         }
         .cart {
             position: fixed;
@@ -135,7 +136,7 @@
             z-index: 10;
         }
         .cart:hover {
-            transform: translateY(-50%) scale(1.05); /* Scale effect on hover */
+            transform: translateY(-50%) scale(1.05);
         }
         .cart h3 {
             margin: 0;
@@ -167,7 +168,7 @@
             right: 5px;
         }
         footer {
-            background: linear-gradient(to bottom, #155824, #000000); /* Gradient green */
+            background: linear-gradient(to bottom, #155824, #000000);
             color: white;
             padding: 20px 10px;
             text-align: center;
@@ -189,7 +190,6 @@
         .testimonials h2 {
             margin-bottom: 20px;
         }
-        /* Toast Notification */
         #toast {
             display: none;
             position: fixed;
@@ -202,12 +202,9 @@
             border-radius: 8px;
             z-index: 100;
         }
-        /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
         }
-
-        /* Pop-In and Out Animation for Icons */
         @keyframes popInOut {
             0% {
                 transform: scale(0.8);
@@ -222,25 +219,16 @@
                 opacity: 1;
             }
         }
-
-        .why-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 0px; /* Reduced the bottom margin to bring it closer to the text */
-            animation: popInOut 2s ease-in-out infinite; /* Apply animation */
-        }
-
-        /* Sliding Testimonials */
         #testimonial-slider {
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            height: 150px; /* Adjust the height to suit your design */
+            height: 150px;
             position: relative;
+            transition: transform 0.5s ease;
         }
-
         #testimonial-slider p {
-            display: none; /* Hide all testimonials by default */
+            display: none;
             padding: 15px;
             font-size: 1.2em;
             color: #333;
@@ -248,45 +236,56 @@
             text-align: center;
             font-style: italic;
         }
-
         #testimonial-slider p.active {
-            display: block; /* Only show the active testimonial */
+            display: block;
         }
-
-        /* Optional: Add transition for smooth sliding effect */
-        #testimonial-slider {
-            transition: transform 0.5s ease;
-        }
-
         /* FAQ and Contact Us */
         .faq, .contact {
             background-color: #fff;
             padding: 30px;
-            margin: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-
         .faq h3, .contact h3 {
             font-size: 1.8em;
             margin-bottom: 15px;
             color: #155824;
         }
-
         .faq p, .contact p {
             font-size: 1.1em;
             color: #333;
             margin-bottom: 10px;
         }
-
         .faq p span, .contact p span {
             font-weight: bold;
             color: #155824;
         }
-
-        .faq, .contact {
-            max-width: 900px;
-            margin: auto;
+        .info-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 40px auto 20px auto;
+        }
+        .info-section .contact, 
+        .info-section .faq {
+            flex: 1 1 0;
+            min-width: 320px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        @media (max-width: 800px) {
+            .info-section {
+                flex-direction: column;
+                gap: 20px;
+                max-width: 98vw;
+            }
+            .info-section .contact, 
+            .info-section .faq {
+                min-width: 0;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -333,7 +332,6 @@
             <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-
         <!-- Product 2 -->
         <div class="product">
             <img src="https://i.ibb.co/TB9Nhr8T/1.png" alt="Custom Coffee Mug">
@@ -341,10 +339,9 @@
             <p>Start From: ₱79.00/pc</p>
             <label for="mug-qty">Quantity:</label>
             <input type="number" id="mug-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Coffee Mug', 79.00, document.getElementById('mug-qty').value)">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Mug', 79.00, document.getElementById('mug-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-
         <!-- Product 3 -->
         <div class="product">
             <img src="https://i.ibb.co/gLvmgNmf/3.png" alt="Custom Hat">
@@ -355,7 +352,6 @@
             <button class="button" onclick="addToCart('Custom Hat', 99.00, document.getElementById('hat-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-
         <!-- Product 4 -->
         <div class="product">
             <img src="https://i.ibb.co/zL0N1v3/5.png" alt="Custom Sling Bag">
@@ -366,7 +362,6 @@
             <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-
         <!-- Product 5 -->
         <div class="product">
             <img src="https://i.ibb.co/QjT7G3NS/6.png" alt="Custom Phone Case">
@@ -377,54 +372,36 @@
             <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-
         <!-- Product 6 -->
         <div class="product">
             <img src="https://i.ibb.co/sdX5bsDZ/4.png" alt="Custom Baseball Jacket">
-            <h2>Custom Hat</h2>
+            <h2>Custom Jacket</h2>
             <p>Start From: ₱309.00/pc</p>
-            <label for="hat-qty">Quantity:</label>
-            <input type="number" id="hat-qty" class="quantity" value="1" min="1" />
+            <label for="jacket-qty">Quantity:</label>
+            <input type="number" id="jacket-qty" class="quantity" value="1" min="1" />
             <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-
         <!-- Product 7 -->
         <div class="product">
             <img src="https://i.ibb.co/nd1jSXJ/7.png" alt="Custom Towel">
-            <h2>Custom Bag</h2>
+            <h2>Custom Towel</h2>
             <p>Start From: ₱139.00/pc</p>
-            <label for="bag-qty">Quantity:</label>
-            <input type="number" id="bag-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('bag-qty').value)">Add to Cart</button>
+            <label for="towel-qty">Quantity:</label>
+            <input type="number" id="towel-qty" class="quantity" value="1" min="1" />
+            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-
         <!-- Product 8 -->
         <div class="product">
             <img src="https://i.ibb.co/gMWpVnxH/8.png" alt="Custom Hotel Slipper">
-            <h2>Custom Phone Case</h2>
+            <h2>Custom Hotel Slipper</h2>
             <p>Start From: ₱150.00/pc</p>
-            <label for="phone-case-qty">Quantity:</label>
-            <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Hotel Slipper', 39.00, document.getElementById('phone-case-qty').value)">Add to Cart</button>
+            <label for="slipper-qty">Quantity:</label>
+            <input type="number" id="slipper-qty" class="quantity" value="1" min="1" />
+            <button class="button" onclick="addToCart('Custom Hotel Slipper', 150.00, document.getElementById('slipper-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
-    </div>
-
-    <!-- FAQ and Contact Us Section -->
-    <div class="faq">
-        <h3>FAQ</h3>
-        <p><span>Q:</span> How long does it take to get my order?<br>
-        <span>A:</span> Most orders are processed and shipped within 48 hours. Larger orders may take up to 5 days.</p>
-        <p><span>Q:</span> What file formats can I upload for my designs?<br>
-        <span>A:</span> We accept JPG, PNG, and PDF files for printing. Make sure your images are high-resolution for the best results.</p>
-        <p><span>Q:</span> Can I make changes to my order after placing it?<br>
-        <span>A:</span> Yes, we can make adjustments as long as the order hasn’t been processed yet. Contact us immediately for any changes.</p>
-        <p><span>Q:</span> Do you offer bulk discounts?<br>
-        <span>A:</span> Yes, we offer discounts for bulk orders. Please contact us for pricing details.</p>
-        <p><span>Q:</span> Are your products eco-friendly?<br>
-        <span>A:</span> Yes, we use sustainable materials whenever possible, and our printing processes are designed to minimize waste.</p>
     </div>
 
     <div class="testimonials">
@@ -438,20 +415,36 @@
         </div>
     </div>
 
-    <div class="contact">
-        <h3>Contact Us</h3>
-        <p><span>Address:</span><br>
-        Unit 12, Creative Tower<br>
-        124 EDSA Extension, Greenhills<br>
-        San Juan City, 1503 Metro Manila<br>
-        Philippines</p>
-        <p><span>Phone:</span><br>
-        +63 2 7990 4420</p>
-        <p><span>Email:</span><br>
-        <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a></p>
-        <p><span>Business Hours:</span><br>
-        Monday – Friday: 9:00 AM – 6:00 PM<br>
-        Saturday – Sunday: Closed</p>
+    <!-- FAQ and Contact Us: Responsive side-by-side or stacked -->
+    <div class="info-section">
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p><span>Address:</span><br>
+            Unit 12, Creative Tower<br>
+            124 EDSA Extension, Greenhills<br>
+            San Juan City, 1503 Metro Manila<br>
+            Philippines</p>
+            <p><span>Phone:</span><br>
+            +63 2 7990 4420</p>
+            <p><span>Email:</span><br>
+            <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a></p>
+            <p><span>Business Hours:</span><br>
+            Monday – Friday: 9:00 AM – 6:00 PM<br>
+            Saturday – Sunday: Closed</p>
+        </div>
+        <div class="faq">
+            <h3>FAQ</h3>
+            <p><span>Q:</span> How long does it take to get my order?<br>
+            <span>A:</span> Most orders are processed and shipped within 48 hours. Larger orders may take up to 5 days.</p>
+            <p><span>Q:</span> What file formats can I upload for my designs?<br>
+            <span>A:</span> We accept JPG, PNG, and PDF files for printing. Make sure your images are high-resolution for the best results.</p>
+            <p><span>Q:</span> Can I make changes to my order after placing it?<br>
+            <span>A:</span> Yes, we can make adjustments as long as the order hasn’t been processed yet. Contact us immediately for any changes.</p>
+            <p><span>Q:</span> Do you offer bulk discounts?<br>
+            <span>A:</span> Yes, we offer discounts for bulk orders. Please contact us for pricing details.</p>
+            <p><span>Q:</span> Are your products eco-friendly?<br>
+            <span>A:</span> Yes, we use sustainable materials whenever possible, and our printing processes are designed to minimize waste.</p>
+        </div>
     </div>
 
     <div class="cart">
