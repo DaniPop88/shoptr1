@@ -396,6 +396,7 @@
         <h3>Your Cart <span class="cart-count">0</span></h3>
         <ul id="cart-items"></ul>
         <button class="button" onclick="checkout()">Checkout</button>
+        <button class="button" onclick="emptyCart()">Empty Cart</button>
     </div>
 
     <div id="toast">Added to cart!</div>
@@ -405,7 +406,6 @@
     </footer>
 
     <script>
-        // JavaScript to handle Cart & Checkout
         let cart = [];
         function addToCart(itemName, price, quantity, customText = "", customColor = "") {
             quantity = parseInt(quantity);
@@ -457,6 +457,13 @@
 
             let telegramBotLink = "https://t.me/MarieGTBot?text=" + encodeURIComponent(orderSummary);
             window.location.href = telegramBotLink;
+        }
+
+        function emptyCart() {
+            cart = [];
+            updateCart();
+            localStorage.removeItem('cart');
+            alert("Your cart has been emptied!");
         }
 
         window.onload = function() {
