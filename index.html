@@ -28,12 +28,10 @@
     }
     </script>
     <style>
-        /* Reset */
         html { scroll-behavior: smooth; }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
         h1, h2, h3 { margin-top: 0; }
 
-        /* Header */
         header {
             background: linear-gradient(to bottom, #28a745, #155824);
             color: #fff;
@@ -42,7 +40,6 @@
             font-size: 2em;
         }
 
-        /* Hero */
         .hero {
             text-align: center;
             padding: 40px;
@@ -60,11 +57,8 @@
             border-radius: 5px;
             font-weight: bold;
         }
-        .hero .cta-button:focus { outline: 2px solid #155824; }
 
-        /* Why Marie Section */
-        .why-marie { background-color: #e8f5e9; padding: 40px; text-align: center; }
-        .why-marie h2 { margin-bottom: 20px; font-size: 2.5em; font-weight: bold; color: #155824; }
+        .why-marie { background: #e8f5e9; padding: 40px 10px; text-align: center; }
         .why-marie-content {
             display: flex;
             justify-content: center;
@@ -74,14 +68,12 @@
         .why-item {
             width: 280px;
             padding: 15px;
-            background-color: #fff;
+            background: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.10);
-            transition: transform 0.3s;
             margin-bottom: 10px;
             text-align: center;
         }
-        .why-item:hover, .why-item:focus { transform: scale(1.05); }
         .why-icon {
             width: 50px;
             height: 50px;
@@ -91,56 +83,53 @@
         .why-item h3 { font-size: 1.5em; margin-bottom: 10px; color: #155824; }
         .why-item p { font-size: 1.1em; color: #222; line-height: 1.5; }
 
-        /* Products */
         .products {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
-            margin: 20px;
+            margin: 20px auto;
+            justify-content: center;
         }
         .product {
-            background-color: #fff;
+            background: #fff;
             border: 1px solid #ddd;
             padding: 15px;
             width: 250px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.10);
             text-align: center;
-            transition: transform 0.2s;
             position: relative;
         }
-        .product:focus, .product:hover { transform: scale(1.05); }
         .product img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             aspect-ratio: 1/1;
         }
-        .button, input[type="color"] {
-            background-color: #ddcf0e;
+        .button {
+            background: #ddcf0e;
             color: #000;
-            padding: 10px;
+            padding: 12px 16px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
-            transition: background 0.3s, box-shadow 0.3s;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.10);
+            font-size: 1.1em;
             margin-bottom: 10px;
-            font-size: 1em;
+            width: 90%;
+            max-width: 250px;
+            transition: box-shadow 0.2s;
         }
         .button:hover, .button:focus { background-color: #39b300; box-shadow: 0px 8px 20px rgba(0,0,0,0.20); outline: none; }
         .quantity, input[type="text"] {
             margin-top: 10px;
             padding: 5px;
-            width: 60px;
+            width: 70px;
             text-align: center;
             border-radius: 5px;
             border: 1px solid #ddd;
         }
-        input[type="color"] { width: 40px; height: 36px; display: inline-block; vertical-align: middle; margin-left: 5px; }
+        label { display:block; margin-bottom:2px; margin-top:6px; font-size:1em; }
 
-        /* Cart Modal */
         .cart-backdrop {
             display: none;
             position: fixed;
@@ -151,23 +140,22 @@
         .cart-modal {
             display: none;
             position: fixed;
-            top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translateX(-50%);
             background: linear-gradient(135deg, #fff, #f1f1f1);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 8px 20px rgba(0,0,0,0.20);
-            width: 320px;
-            max-width: 98vw;
+            padding: 20px 10px;
+            border-radius: 16px 16px 0 0;
+            box-shadow: 0px -4px 24px rgba(0,0,0,0.18);
+            width: 100%;
+            max-width: 420px;
+            bottom: 0;
             z-index: 101;
-            border: 3px solid transparent;
+            border: 3px solid #ddcf0e;
             text-align: center;
         }
-        .cart-modal.highlight { box-shadow: 0 0 0 4px #ddcf0e, 0px 8px 20px rgba(0,0,0,0.20); border-color: #ddcf0e; }
-        .cart-modal h3 { margin: 0; font-size: 1.2em; font-weight: bold; }
+        .cart-modal h3 { margin: 0 0 10px 0; font-size: 1.2em; font-weight: bold; }
         .cart-modal ul { list-style: none; padding: 0; margin: 0; }
-        .cart-modal ul li { padding: 5px 0; display: flex; justify-content: space-between; align-items: center; }
+        .cart-modal ul li { padding: 5px 0; display: flex; justify-content: space-between; align-items: center; font-size:1em; }
         .cart-modal .remove-item-btn {
             margin-left: 10px;
             background: none;
@@ -176,7 +164,6 @@
             font-size: 1.2em;
             cursor: pointer;
         }
-        .cart-modal .remove-item-btn:focus { outline: 2px solid #c02618; }
         .empty-cart-msg { color: #888; font-style: italic; padding: 10px 0; }
         .cart-modal .cart-count {
             background-color: #c02618;
@@ -190,24 +177,24 @@
         }
         .cart-btn-fixed {
             position: fixed;
-            bottom: 15px;
-            right: 15px;
+            bottom: 18px;
+            right: 18px;
             background: #155824;
             color: #fff;
             border-radius: 50%;
-            width: 60px; height: 60px;
-            font-size: 2em;
+            width: 64px; height: 64px;
+            font-size: 2.5em;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 8px 20px rgba(0,0,0,0.20);
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.22);
             cursor: pointer;
             z-index: 99;
         }
         .cart-btn-fixed .cart-count {
             position: absolute;
-            top: 6px;
-            right: 6px;
+            top: 8px;
+            right: 8px;
             background: #ddcf0e;
             color: #000;
             border-radius: 50%;
@@ -215,7 +202,6 @@
             font-size: .9em;
         }
 
-        /* Footer */
         footer {
             background: linear-gradient(to bottom, #155824, #000);
             color: #fff;
@@ -226,45 +212,42 @@
         footer a { color: #28a745; text-decoration: none; font-weight: bold; }
         footer a:hover { text-decoration: underline; }
 
-        /* Testimonials */
-        .testimonials { background-color: #f1f1f1; padding: 40px; text-align: center; }
-        .testimonials h2 { margin-bottom: 20px; }
+        .testimonials { background-color: #f1f1f1; padding: 24px 8px; text-align: center; }
+        .testimonials h2 { margin-bottom: 10px; font-size:1.3em; }
         #testimonial-slider {
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            height: 150px;
+            height: 110px;
             position: relative;
             transition: transform .5s;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
         }
-        #testimonial-slider p { display: none; padding: 15px; font-size: 1.2em; color: #333; line-height: 1.5; text-align: center; font-style: italic;}
+        #testimonial-slider p { display: none; padding: 8px; font-size: 1.05em; color: #333; line-height: 1.5; text-align: center; font-style: italic;}
         #testimonial-slider p.active { display: block; }
         .testimonial-controls { display: flex; justify-content: center; gap: 10px; }
         .testimonial-controls button { background: #ddcf0e; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
         .testimonial-controls button:focus { outline: 2px solid #155824; }
 
-        /* FAQ & Contact */
         .faq, .contact {
-            background-color: #fff;
-            padding: 30px;
+            background: #fff;
+            padding: 20px 12px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.10);
         }
-        .faq h3, .contact h3 { font-size: 1.8em; margin-bottom: 15px; color: #155824; }
-        .faq p, .contact p { font-size: 1.1em; color: #333; margin-bottom: 10px; }
+        .faq h3, .contact h3 { font-size: 1.3em; margin-bottom: 10px; color: #155824; }
+        .faq p, .contact p { font-size: 1em; color: #333; margin-bottom: 10px; }
         .faq p span, .contact p span { font-weight: bold; color: #155824; }
         .info-section {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            gap: 40px;
+            gap: 24px;
             max-width: 1100px;
-            margin: 40px auto 20px auto;
+            margin: 24px auto 20px auto;
         }
-        .info-section .contact, .info-section .faq { flex: 1 1 0; min-width: 320px; margin: 0; box-sizing: border-box; }
+        .info-section .contact, .info-section .faq { flex: 1 1 0; min-width: 220px; margin: 0; box-sizing: border-box; }
 
-        /* Bulk Discount Modal */
         .modal-backdrop {
             display: none;
             position: fixed;
@@ -287,7 +270,6 @@
             min-width: 300px;
         }
 
-        /* Toast */
         #toast {
             display: none;
             position: fixed;
@@ -301,28 +283,25 @@
             z-index: 300;
             font-size: 1.2em;
         }
-
-        /* Animation */
         @keyframes popInOut {
             0% { transform: scale(.8); opacity: 0;}
             50% { transform: scale(1.1); opacity: 1;}
             100% { transform: scale(1); opacity: 1;}
         }
-
-        /* Responsive */
         @media (max-width: 800px) {
-            .info-section { flex-direction: column; gap: 20px; max-width: 98vw;}
+            .info-section { flex-direction: column; gap: 12px; max-width: 98vw;}
             .info-section .contact, .info-section .faq { min-width: 0; width: 100%;}
             .products { flex-direction: column; align-items: center; }
         }
-        @media (max-width: 500px) {
-            .product { width: 95vw; }
-            .cart-modal { width: 96vw;}
+        @media (max-width: 600px) {
+            .product { width: 98vw; border-radius: 12px; margin-bottom: 12px; font-size:1.08em;}
+            .hero { padding: 22px 6px; }
+            .cart-modal { max-width: 99vw; border-radius: 18px 18px 0 0; padding:14px 4px;}
+        }
+        @media (max-width: 400px) {
+            .product { width: 99vw; font-size:1em;}
         }
     </style>
-    <!-- Analytics Placeholder -->
-    <!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X" async></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-XXXXXXX-X');</script> -->
 </head>
 <body>
     <header>
@@ -355,7 +334,6 @@
     </section>
 
     <section class="products" id="products" aria-label="Products">
-        <!-- Each product now includes custom text and color options -->
         <!-- Product 1 -->
         <div class="product" tabindex="0">
             <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt" loading="lazy" width="250" height="250">
@@ -365,9 +343,7 @@
             <input type="number" id="tshirt-qty" class="quantity" value="1" min="1" aria-label="T-Shirt Quantity" />
             <label for="custom-text-tshirt">Custom Text:</label>
             <input type="text" id="custom-text-tshirt" maxlength="20" placeholder="Add your text" aria-label="Custom Text for T-Shirt"/>
-            <label for="custom-color-tshirt">Color:</label>
-            <input type="color" id="custom-color-tshirt" value="#ffffff" aria-label="Custom Color for T-Shirt"/>
-            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value, document.getElementById('custom-text-tshirt').value, document.getElementById('custom-color-tshirt').value)" aria-label="Add T-Shirt to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value, document.getElementById('custom-text-tshirt').value)" aria-label="Add T-Shirt to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom T-Shirt')" aria-label="Request Bulk Discount T-Shirt">Request Bulk Discount</button>
         </div>
         <!-- Product 2 -->
@@ -379,9 +355,7 @@
             <input type="number" id="mug-qty" class="quantity" value="1" min="1" aria-label="Mug Quantity"/>
             <label for="custom-text-mug">Custom Text:</label>
             <input type="text" id="custom-text-mug" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Mug"/>
-            <label for="custom-color-mug">Color:</label>
-            <input type="color" id="custom-color-mug" value="#ffffff" aria-label="Custom Color for Mug"/>
-            <button class="button" onclick="addToCart('Custom Mug', 79.00, document.getElementById('mug-qty').value, document.getElementById('custom-text-mug').value, document.getElementById('custom-color-mug').value)" aria-label="Add Mug to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Mug', 79.00, document.getElementById('mug-qty').value, document.getElementById('custom-text-mug').value)" aria-label="Add Mug to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom Mug')" aria-label="Request Bulk Discount Mug">Request Bulk Discount</button>
         </div>
         <!-- Product 3 -->
@@ -393,9 +367,7 @@
             <input type="number" id="hat-qty" class="quantity" value="1" min="1" aria-label="Hat Quantity"/>
             <label for="custom-text-hat">Custom Text:</label>
             <input type="text" id="custom-text-hat" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Hat"/>
-            <label for="custom-color-hat">Color:</label>
-            <input type="color" id="custom-color-hat" value="#ffffff" aria-label="Custom Color for Hat"/>
-            <button class="button" onclick="addToCart('Custom Hat', 99.00, document.getElementById('hat-qty').value, document.getElementById('custom-text-hat').value, document.getElementById('custom-color-hat').value)" aria-label="Add Hat to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Hat', 99.00, document.getElementById('hat-qty').value, document.getElementById('custom-text-hat').value)" aria-label="Add Hat to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom Hat')" aria-label="Request Bulk Discount Hat">Request Bulk Discount</button>
         </div>
         <!-- Product 4 -->
@@ -407,9 +379,7 @@
             <input type="number" id="bag-qty" class="quantity" value="1" min="1" aria-label="Bag Quantity"/>
             <label for="custom-text-bag">Custom Text:</label>
             <input type="text" id="custom-text-bag" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Bag"/>
-            <label for="custom-color-bag">Color:</label>
-            <input type="color" id="custom-color-bag" value="#ffffff" aria-label="Custom Color for Bag"/>
-            <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value, document.getElementById('custom-text-bag').value, document.getElementById('custom-color-bag').value)" aria-label="Add Bag to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Sling Bag', 229.00, document.getElementById('bag-qty').value, document.getElementById('custom-text-bag').value)" aria-label="Add Bag to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom Sling Bag')" aria-label="Request Bulk Discount Bag">Request Bulk Discount</button>
         </div>
         <!-- Product 5 -->
@@ -421,9 +391,7 @@
             <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" aria-label="Phone Case Quantity"/>
             <label for="custom-text-phonecase">Custom Text:</label>
             <input type="text" id="custom-text-phonecase" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Phone Case"/>
-            <label for="custom-color-phonecase">Color:</label>
-            <input type="color" id="custom-color-phonecase" value="#ffffff" aria-label="Custom Color for Phone Case"/>
-            <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value, document.getElementById('custom-text-phonecase').value, document.getElementById('custom-color-phonecase').value)" aria-label="Add Phone Case to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Phone Case', 39.00, document.getElementById('phone-case-qty').value, document.getElementById('custom-text-phonecase').value)" aria-label="Add Phone Case to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom Phone Case')" aria-label="Request Bulk Discount Phone Case">Request Bulk Discount</button>
         </div>
         <!-- Product 6 -->
@@ -435,9 +403,7 @@
             <input type="number" id="jacket-qty" class="quantity" value="1" min="1" aria-label="Jacket Quantity"/>
             <label for="custom-text-jacket">Custom Text:</label>
             <input type="text" id="custom-text-jacket" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Jacket"/>
-            <label for="custom-color-jacket">Color:</label>
-            <input type="color" id="custom-color-jacket" value="#ffffff" aria-label="Custom Color for Jacket"/>
-            <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value, document.getElementById('custom-text-jacket').value, document.getElementById('custom-color-jacket').value)" aria-label="Add Jacket to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Jacket', 309.00, document.getElementById('jacket-qty').value, document.getElementById('custom-text-jacket').value)" aria-label="Add Jacket to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom Jacket')" aria-label="Request Bulk Discount Jacket">Request Bulk Discount</button>
         </div>
         <!-- Product 7 -->
@@ -449,9 +415,7 @@
             <input type="number" id="towel-qty" class="quantity" value="1" min="1" aria-label="Towel Quantity"/>
             <label for="custom-text-towel">Custom Text:</label>
             <input type="text" id="custom-text-towel" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Towel"/>
-            <label for="custom-color-towel">Color:</label>
-            <input type="color" id="custom-color-towel" value="#ffffff" aria-label="Custom Color for Towel"/>
-            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value, document.getElementById('custom-text-towel').value, document.getElementById('custom-color-towel').value)" aria-label="Add Towel to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Towel', 139.00, document.getElementById('towel-qty').value, document.getElementById('custom-text-towel').value)" aria-label="Add Towel to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom Towel')" aria-label="Request Bulk Discount Towel">Request Bulk Discount</button>
         </div>
         <!-- Product 8 -->
@@ -463,9 +427,7 @@
             <input type="number" id="slipper-qty" class="quantity" value="1" min="1" aria-label="Slipper Quantity"/>
             <label for="custom-text-slipper">Custom Text:</label>
             <input type="text" id="custom-text-slipper" maxlength="20" placeholder="Add your text" aria-label="Custom Text for Slipper"/>
-            <label for="custom-color-slipper">Color:</label>
-            <input type="color" id="custom-color-slipper" value="#ffffff" aria-label="Custom Color for Slipper"/>
-            <button class="button" onclick="addToCart('Custom Hotel Slipper', 150.00, document.getElementById('slipper-qty').value, document.getElementById('custom-text-slipper').value, document.getElementById('custom-color-slipper').value)" aria-label="Add Hotel Slipper to Cart">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Hotel Slipper', 150.00, document.getElementById('slipper-qty').value, document.getElementById('custom-text-slipper').value)" aria-label="Add Hotel Slipper to Cart">Add to Cart</button>
             <button class="button" onclick="showBulkModal('Custom Hotel Slipper')" aria-label="Request Bulk Discount Hotel Slipper">Request Bulk Discount</button>
         </div>
     </section>
@@ -581,10 +543,9 @@
     <script>
         // Cart logic
         let cart = [];
-        function addToCart(itemName, price, quantity, customText = "", customColor = "") {
+        function addToCart(itemName, price, quantity, customText = "") {
             quantity = parseInt(quantity);
             customText = (customText || "").trim();
-            customColor = customColor || "";
             // Validate input
             if (isNaN(quantity) || quantity < 1) {
                 alert("Please enter a valid quantity.");
@@ -594,17 +555,16 @@
                 alert("Custom text must be 20 characters or less.");
                 return;
             }
-            // Check for existing product (same name, color, text)
+            // Check for existing product (same name, text)
             let existing = cart.find(item =>
                 item.itemName === itemName &&
-                item.customText === customText &&
-                item.customColor === customColor
+                item.customText === customText
             );
             if (existing) {
                 existing.quantity += quantity;
                 existing.totalPrice = existing.price * existing.quantity;
             } else {
-                let item = { itemName, price, quantity, customText, customColor, totalPrice: price * quantity };
+                let item = { itemName, price, quantity, customText, totalPrice: price * quantity };
                 cart.push(item);
             }
             updateCart();
@@ -626,7 +586,6 @@
                 let li = document.createElement("li");
                 let customDetails = "";
                 if (item.customText) customDetails += ` | "${item.customText}"`;
-                if (item.customColor) customDetails += ` | <span style="background:${item.customColor}; padding:0 8px; border-radius:4px; color:#000;">${item.customColor}</span>`;
                 li.innerHTML = `<span>${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}${customDetails}</span>
                     <button class="remove-item-btn" aria-label="Remove ${item.itemName} from cart" onclick="removeCartItem(${idx})" tabindex="0">&times;</button>`;
                 cartItems.appendChild(li);
@@ -672,13 +631,11 @@
             cart.forEach(item => {
                 orderSummary += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
                 if (item.customText) orderSummary += ` | Text: "${item.customText}"`;
-                if (item.customColor) orderSummary += ` | Color: ${item.customColor}`;
                 orderSummary += "\n";
                 total += item.totalPrice;
             });
             orderSummary += `\nTotal: ₱${total.toFixed(2)}`;
             orderSummary += "\n\nPlease confirm your order.";
-            // Show summary modal instead of immediate redirect
             if (confirm(orderSummary + "\n\nProceed to Telegram to place your order?")) {
                 let telegramBotLink = "https://t.me/MarieGTBot?text=" + encodeURIComponent(orderSummary);
                 window.open(telegramBotLink, "_blank");
@@ -692,7 +649,6 @@
             localStorage.removeItem('cart');
             showToast("Your cart has been emptied!");
         }
-        // Bulk Discount Modal
         function showBulkModal(productName) {
             document.getElementById("bulk-product").value = productName;
             document.getElementById("bulk-modal").style.display = "block";
@@ -705,7 +661,6 @@
         }
         document.getElementById("bulk-form").onsubmit = function(e) {
             e.preventDefault();
-            // Validate and send
             let name = document.getElementById("bulk-name").value.trim();
             let email = document.getElementById("bulk-email").value.trim();
             let qty = document.getElementById("bulk-quantity").value;
@@ -721,11 +676,9 @@
             showToast("Bulk request sent!");
             return false;
         }
-        // Cart modal close on backdrop click
         document.getElementById("cart-backdrop").onclick = closeCart;
         document.getElementById("modal-backdrop").onclick = closeBulkModal;
 
-        // Testimonials slider logic
         let testimonialIdx = 0;
         let testimonials;
         function showTestimonial(idx) {
@@ -742,9 +695,7 @@
             testimonialIdx = (testimonialIdx - 1 + testimonials.length) % testimonials.length;
             showTestimonial(testimonialIdx);
         }
-        // On load
         window.onload = function() {
-            // Cart restore
             const savedCart = localStorage.getItem('cart');
             if (savedCart) {
                 cart = JSON.parse(savedCart);
@@ -752,14 +703,12 @@
             } else {
                 updateCart();
             }
-            // Testimonials
             testimonials = document.querySelectorAll('#testimonial-slider p');
             testimonialIdx = 0;
             showTestimonial(testimonialIdx);
             setInterval(nextTestimonial, 3000);
             document.getElementById("testimonial-next").onclick = nextTestimonial;
             document.getElementById("testimonial-prev").onclick = prevTestimonial;
-            // Keyboard navigation for cart button
             document.getElementById("cart-btn-fixed").addEventListener("keydown", function(e){
                 if (e.key === "Enter" || e.key === " ") showCart();
             });
