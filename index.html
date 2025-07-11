@@ -556,34 +556,30 @@
     <script>
         // Cart logic
         let cart = [];
-        function addToCart(itemName, price, quantity, customText = "") {
+        
+        function addToCart(itemName, price, quantity) {
             quantity = parseInt(quantity);
-            customText = (customText || "").trim();
             // Validate input
             if (isNaN(quantity) || quantity < 1) {
                 alert("Please enter a valid quantity.");
                 return;
             }
-            if (customText.length > 20) {
-                alert("Custom text must be 20 characters or less.");
-                return;
-            }
-            // Check for existing product (same name, text)
+            // Check for existing product (same name)
             let existing = cart.find(item =>
-                item.itemName === itemName &&
-                item.customText === customText
+                item.itemName === itemName
             );
             if (existing) {
                 existing.quantity += quantity;
                 existing.totalPrice = existing.price * existing.quantity;
             } else {
-                let item = { itemName, price, quantity, customText, totalPrice: price * quantity };
+                let item = { itemName, price, quantity, totalPrice: price * quantity };
                 cart.push(item);
             }
             updateCart();
             showToast("Added to cart!");
             highlightCart();
         }
+        
         function updateCart() {
             let cartItems = document.getElementById("cart-items");
             let cartCountEls = document.querySelectorAll(".cart-count");
@@ -597,9 +593,7 @@
             }
             cart.forEach((item, idx) => {
                 let li = document.createElement("li");
-                let customDetails = "";
-                if (item.customText) customDetails += ` | "${item.customText}"`;
-                li.innerHTML = `<span>${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}${customDetails}</span>
+                li.innerHTML = `<span>${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}</span>
                     <button class="remove-item-btn" aria-label="Remove ${item.itemName} from cart" onclick="removeCartItem(${idx})" tabindex="0">&times;</button>`;
                 cartItems.appendChild(li);
                 total += item.totalPrice;
@@ -610,6 +604,7 @@
             cartItems.appendChild(totalItem);
             localStorage.setItem('cart', JSON.stringify(cart));
         }
+        
         function removeCartItem(idx) {
             cart.splice(idx, 1);
             updateCart();
@@ -639,21 +634,8 @@
                 showToast("Your cart is empty!");
                 return;
             }
-            let orderSummary = "Order Summary:\n";
-            let total = 0;
-            cart.forEach(item => {
-                orderSummary += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
-                if (item.customText) orderSummary += ` | Text: "${item.customText}"`;
-                orderSummary += "\n";
-                total += item.totalPrice;
-            });
-            orderSummary += `\nTotal: ₱${total.toFixed(2)}`;
-            orderSummary += "\n\nPlease confirm your order.";
-            if (confirm(orderSummary + "\n\nProceed to Telegram to place your order?")) {
-                let telegramBotLink = "https://t.me/MarieGTBot?text=" + encodeURIComponent(orderSummary);
-                window.open(telegramBotLink, "_blank");
-                closeCart();
-            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = "order-summary.html";
         }
         function emptyCart() {
             if (!confirm("Are you sure you want to empty the cart?")) return;
@@ -691,7 +673,7 @@
         }
         document.getElementById("cart-backdrop").onclick = closeCart;
         document.getElementById("modal-backdrop").onclick = closeBulkModal;
-
+        
         let testimonialIdx = 0;
         let testimonials;
         function showTestimonial(idx) {
