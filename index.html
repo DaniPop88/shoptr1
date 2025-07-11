@@ -53,21 +53,22 @@
             gap: 30px;
         }
         .why-item {
-            flex: 1;
-            max-width: 300px;
-            padding: 20px;
+            width: 300px; /* Set a fixed width for each item */
+            padding: 15px; /* Reduced padding to bring the text and icon closer */
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
+            margin-bottom: 10px; /* Adds space between items */
+            text-align: center; /* Ensures text is centered below the icon */
         }
         .why-item:hover {
             transform: scale(1.05);
         }
         .why-icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 20px;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0px; /* Reduced the bottom margin to bring it closer to the text */
         }
         .why-item h3 {
             font-size: 1.5em;
@@ -205,6 +206,57 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Pop-In and Out Animation for Icons */
+        @keyframes popInOut {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .why-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0px; /* Reduced the bottom margin to bring it closer to the text */
+            animation: popInOut 2s ease-in-out infinite; /* Apply animation */
+        }
+
+        /* Sliding Testimonials */
+        #testimonial-slider {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 150px; /* Adjust the height to suit your design */
+            position: relative;
+        }
+
+        #testimonial-slider p {
+            display: none; /* Hide all testimonials by default */
+            padding: 15px;
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.5;
+            text-align: center;
+            font-style: italic;
+        }
+
+        #testimonial-slider p.active {
+            display: block; /* Only show the active testimonial */
+        }
+
+        /* Optional: Add transition for smooth sliding effect */
+        #testimonial-slider {
+            transition: transform 0.5s ease;
+        }
     </style>
 </head>
 <body>
@@ -331,11 +383,13 @@
 
     <div class="testimonials">
         <h2>TESTIMONIALS</h2>
-        <p><em>“I love my custom t-shirt! The print quality is amazing, and the fit is perfect.”</em> — Carla M., Quezon City</p>
-        <p><em>“Marie Custom Goods made a beautiful canvas print for my office. It’s exactly what I envisioned!”</em> — John R., Pasig</p>
-        <p><em>“The custom mug I ordered is fantastic! The colors are vibrant and it’s the perfect gift for my friend. Highly recommend!”</em> — Maria L., Makati</p>
-        <p><em>“Fast shipping and high-quality prints. The custom phone case fits my phone perfectly, and I love the design. Will definitely order again!”</em> — Grace F., Quezon City</p>
-        <p><em>“I was looking for a personalized gift for my sister’s birthday, and the custom t-shirt from Marie Custom Goods was a huge hit! She loved it.”</em> — Joseph D., Parañaque</p>
+        <div id="testimonial-slider">
+            <p><em>“I love my custom t-shirt! The print quality is amazing, and the fit is perfect.”</em> — Carla M., Quezon City</p>
+            <p><em>“Marie Custom Goods made a beautiful canvas print for my office. It’s exactly what I envisioned!”</em> — John R., Pasig</p>
+            <p><em>“The custom mug I ordered is fantastic! The colors are vibrant and it’s the perfect gift for my friend. Highly recommend!”</em> — Maria L., Makati</p>
+            <p><em>“Fast shipping and high-quality prints. The custom phone case fits my phone perfectly, and I love the design. Will definitely order again!”</em> — Grace F., Quezon City</p>
+            <p><em>“I was looking for a personalized gift for my sister’s birthday, and the custom t-shirt from Marie Custom Goods was a huge hit! She loved it.”</em> — Joseph D., Parañaque</p>
+        </div>
     </div>
 
     <div class="cart">
@@ -351,6 +405,7 @@
     </footer>
 
     <script>
+        // JavaScript to handle Cart & Checkout
         let cart = [];
         function addToCart(itemName, price, quantity, customText = "", customColor = "") {
             quantity = parseInt(quantity);
@@ -410,6 +465,21 @@
                 cart = JSON.parse(savedCart);
                 updateCart();
             }
+
+            let currentIndex = 0;
+            const testimonials = document.querySelectorAll('#testimonial-slider p');
+
+            function showTestimonial() {
+                testimonials.forEach((testimonial, index) => {
+                    testimonial.classList.remove('active');
+                });
+
+                testimonials[currentIndex].classList.add('active');
+                currentIndex = (currentIndex + 1) % testimonials.length;
+            }
+
+            showTestimonial();
+            setInterval(showTestimonial, 3000);
         }
     </script>
 </body>
