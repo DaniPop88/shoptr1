@@ -4,14 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARIE CUSTOM GOODS - NCR</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
         header {
-            background: linear-gradient(to bottom, #28a745, #218838); /* Gradient green */
+            background: linear-gradient(to bottom, #28a745, #155824);
             color: white;
             text-align: center;
             padding: 20px;
             font-size: 2em;
+            background-size: cover;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #ddcf0e;
+            color: black;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .cta-button:hover {
+            background-color: #39b300;
         }
         .products {
             display: flex;
@@ -41,26 +67,20 @@
             border-radius: 8px;
         }
         .button {
-            background-color: #007bff; /* Blue for buttons */
-            color: white;
+            background-color: #ddcf0e;
+            color: rgb(0, 0, 0);
             padding: 10px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s, box-shadow 0.3s;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Added shadow */
-            margin-bottom: 10px; /* Added space below the buttons */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
         }
         .button:hover {
-            background-color: #0056b3;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+            background-color: #39b300;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
         }
-
-        .button + .button {
-            margin-top: 10px; /* Added space between the buttons */
-        }
-
-        /* Updated Cart Box */
         .cart {
             position: fixed;
             top: 50%;
@@ -75,36 +95,24 @@
             transition: transform 0.3s ease;
             z-index: 10;
         }
-
         .cart:hover {
-            transform: translateY(-50%) scale(1.05); /* Scale effect on hover */
+            transform: translateY(-50%) scale(1.05);
         }
-
         .cart h3 {
             margin: 0;
             font-size: 1.2em;
             font-weight: bold;
         }
-
         .cart ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         .cart ul li {
             padding: 5px 0;
         }
-
-        .quantity {
-            margin-top: 10px;
-            padding: 5px;
-            width: 60px;
-            text-align: center;
-        }
-
         .cart .cart-count {
-            background-color: #ff6f61;
+            background-color: #c02618;
             color: white;
             padding: 3px 8px;
             border-radius: 15px;
@@ -113,8 +121,22 @@
             top: 5px;
             right: 5px;
         }
+        footer {
+            background: linear-gradient(to bottom, #155824, #000000);
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        footer a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-        /* Responsive design */
         @media (max-width: 768px) {
             header {
                 font-size: 1.5em;
@@ -135,56 +157,59 @@
             }
         }
 
-        footer {
-            background-color: #333;
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
             color: white;
-            padding: 20px 10px;
-            text-align: center;
-            font-size: 0.9em;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 100;
         }
 
-        footer a {
-            color: #28a745;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+        /* Dark Mode */
+        body.dark-mode {
+            background: #181818;
+            color: #eee;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>MARIE CUSTOM GOODS - NCR</h1>
+        <p>Your personalized, high-quality products. Custom made just for you!</p>
+        <button class="cta-button" id="theme-toggle">🌒</button>
     </header>
 
-    <div class="products">
+    <div class="products" data-aos="fade-up">
         <!-- Product 1 -->
-        <div class="product">
-            <img src="https://i.ibb.co/KxVPzFDp/2.png" alt="Custom T-Shirt">
+        <div class="product" data-aos="fade-up">
+            <img src="https://i.ibb.co/p6KCFY5y/2.png" alt="Custom T-Shirt">
             <h2>Custom T-Shirt</h2>
-            <p>Start From: ₱189.00/pc</p>
+            <p>Start From: ₱129.00/pc</p>
             <label for="tshirt-qty">Quantity:</label>
             <input type="number" id="tshirt-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom T-Shirt', 189.00, document.getElementById('tshirt-qty').value)">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom T-Shirt', 129.00, document.getElementById('tshirt-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
 
         <!-- Product 2 -->
-        <div class="product">
-            <img src="https://i.ibb.co/TxpnTwC4/1.png" alt="Custom Mug">
+        <div class="product" data-aos="fade-up">
+            <img src="https://i.ibb.co/TB9Nhr8T/1.png" alt="Custom Coffee Mug">
             <h2>Custom Mug</h2>
-            <p>Start From: ₱129.00/pc</p>
+            <p>Start From: ₱79.00/pc</p>
             <label for="mug-qty">Quantity:</label>
             <input type="number" id="mug-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Mug', 129.00, document.getElementById('mug-qty').value)">Add to Cart</button>
+            <button class="button" onclick="addToCart('Custom Coffee Mug', 79.00, document.getElementById('mug-qty').value)">Add to Cart</button>
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
 
         <!-- Product 3 -->
-        <div class="product">
-            <img src="https://i.ibb.co/wFykPPPk/3.png" alt="Custom Hat">
+        <div class="product" data-aos="fade-up">
+            <img src="https://i.ibb.co/gLvmgNmf/3.png" alt="Custom Hat">
             <h2>Custom Hat</h2>
             <p>Start From: ₱99.00/pc</p>
             <label for="hat-qty">Quantity:</label>
@@ -193,41 +218,26 @@
             <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
         </div>
 
-        <!-- Product 4 -->
-        <div class="product">
-            <img src="https://i.ibb.co/XYZ123/custom-bag.png" alt="Custom Bag">
-            <h2>Custom Bag</h2>
-            <p>Start From: ₱299.00/pc</p>
-            <label for="bag-qty">Quantity:</label>
-            <input type="number" id="bag-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Bag', 299.00, document.getElementById('bag-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product">
-            <img src="https://i.ibb.co/XYZ123/custom-phone-case.png" alt="Custom Phone Case">
-            <h2>Custom Phone Case</h2>
-            <p>Start From: ₱150.00/pc</p>
-            <label for="phone-case-qty">Quantity:</label>
-            <input type="number" id="phone-case-qty" class="quantity" value="1" min="1" />
-            <button class="button" onclick="addToCart('Custom Phone Case', 150.00, document.getElementById('phone-case-qty').value)">Add to Cart</button>
-            <button class="button" onclick="window.location.href='https://t.me/MarieGTBot'">Request Bulk Discount</button>
-        </div>
-
+        <!-- More products go here... -->
     </div>
 
     <!-- Cart Summary -->
     <div class="cart">
         <h3>Your Cart <span class="cart-count">0</span></h3>
-        <ul id="cart-items">
-            <!-- Cart items will go here -->
-        </ul>
+        <ul id="cart-items"></ul>
         <button class="button" onclick="checkout()">Checkout</button>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast">Added to cart!</div>
+
     <script>
         let cart = [];
+
+        // Theme Toggle
+        document.getElementById('theme-toggle').onclick = () => {
+            document.body.classList.toggle('dark-mode');
+        };
 
         // Function to add items to the cart
         function addToCart(itemName, price, quantity) {
@@ -235,13 +245,14 @@
             let item = { itemName, price, quantity, totalPrice: price * quantity };
             cart.push(item);
             updateCart();
+            showToast();
         }
 
         // Update the cart UI
         function updateCart() {
             let cartItems = document.getElementById("cart-items");
             let cartCount = document.querySelector(".cart-count");
-            cartItems.innerHTML = ''; // Clear previous cart items
+            cartItems.innerHTML = ''; 
             let total = 0;
 
             cart.forEach(item => {
@@ -251,21 +262,27 @@
                 total += item.totalPrice;
             });
 
-            // Update cart item count
             cartCount.textContent = cart.length;
 
-            // Optionally add the total at the bottom
             let totalItem = document.createElement("li");
             totalItem.textContent = `Total: ₱${total.toFixed(2)}`;
             cartItems.appendChild(totalItem);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
 
-        // Checkout function (send details to WhatsApp)
+        // Toast Notification on Add to Cart
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 2000);
+        }
+
+        // Checkout function (send details to Telegram)
         function checkout() {
             let orderSummary = "Order Summary:\n";
             let total = 0;
 
-            // Create the order details for WhatsApp
             cart.forEach(item => {
                 orderSummary += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}\n`;
                 total += item.totalPrice;
@@ -274,13 +291,34 @@
             orderSummary += `\nTotal: ₱${total.toFixed(2)}`;
             orderSummary += "\n\nPlease confirm your order.";
 
-            // WhatsApp number (replace with your number)
-            let whatsappNumber = "YOUR_PHONE_NUMBER"; // e.g., "+639123456789"
-            let whatsappMessage = encodeURIComponent(orderSummary);
+            // Send order details to Telegram
+            let telegramBotUrl = "https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage";
+            let chatId = "YOUR_CHAT_ID";
+            let message = encodeURIComponent(orderSummary);
 
-            // Redirect to WhatsApp with the order message
-            window.location.href = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+            fetch(`${telegramBotUrl}?chat_id=${chatId}&text=${message}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        window.location.href = 'https://t.me/MarieGTBot';
+                    } else {
+                        alert("There was an issue with the order. Please try again.");
+                    }
+                })
+                .catch(error => alert("Error sending message: " + error));
         }
+
+        // Cart Persistence with localStorage
+        window.onload = function() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+        }
+
+        // Initialize AOS
+        AOS.init();
     </script>
 
     <footer>
