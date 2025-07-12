@@ -76,9 +76,20 @@
         .why-marie { background: #e8f5e9; padding: 40px 10px; text-align: center; }
         .why-marie-content {
             display: flex;
+            align-items: center;
             justify-content: center;
+            gap: 22px;
             flex-wrap: wrap;
-            gap: 10px;
+        }
+        
+        .why-brief {
+            font-size: 1.11em;
+            color: #155824;
+            text-align: center;
+            max-width: 260px;
+            margin: 0 8px;
+            line-height: 1.5;
+            /* No border, no background, just text! */
         }
         .why-item {
             width: 280px;
@@ -381,6 +392,13 @@
             margin-left: auto !important;
             margin-right: auto !important;
           }
+        .why-marie-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .why-brief {
+                max-width: 95vw;
+            }
         }
     </style>
 </head>
@@ -413,6 +431,11 @@
                 <img src="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png" alt="MARIE GOODS" class="why-icon" loading="lazy" width="100" height="100">
                 <p>Founded by Marie Rodriguez, a design enthusiast, we started as a hobby and quickly grew into a business that’s passionate about helping you express your individuality through one-of-a-kind products.</p>
             </div>
+            
+            <div class="why-brief">
+                We’re a creative team dedicated to bringing your custom designs to life. Whether it’s a quirky t-shirt, a personalized mug, or unique office decor, we make it happen. 🎨✨
+            </div>
+            
             <div class="why-item" tabindex="0">
                 <h3>OUR MISSION</h3>
                 <img src="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png" alt="MARIE GOODS" class="why-icon" loading="lazy" width="100" height="100">
