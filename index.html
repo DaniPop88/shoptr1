@@ -310,18 +310,77 @@
             50% { transform: scale(1.1); opacity: 1;}
             100% { transform: scale(1); opacity: 1;}
         }
-        @media (max-width: 800px) {
-            .info-section { flex-direction: column; gap: 12px; max-width: 98vw;}
-            .info-section .contact, .info-section .faq { min-width: 0; width: 100%;}
-            .products { flex-direction: column; align-items: center; }
-        }
         @media (max-width: 600px) {
-            .product { width: 98vw; border-radius: 12px; margin-bottom: 12px; font-size:1.08em;}
-            .hero { padding: 22px 6px; }
-            .cart-modal { max-width: 99vw; border-radius: 18px 18px 0 0; padding:14px 4px;}
-        }
-        @media (max-width: 400px) {
-            .product { width: 99vw; font-size:1em;}
+          /* Make product card smaller and centered */
+          .product {
+            width: 92vw !important;
+            max-width: 350px !important;
+            min-width: 0 !important;
+            margin: 16px auto !important;
+            padding: 10px 4px 18px 4px !important;
+            border-radius: 12px !important;
+            font-size: 1em !important;
+            box-shadow: 0 2px 10px rgba(166,125,196,0.07);
+            float: none !important;
+            display: block !important;
+          }
+        
+          /* Force product image container to 1:1 square */
+          .product img {
+            width: 100% !important;
+            aspect-ratio: 1 / 1 !important;
+            height: auto !important;
+            min-width: 0 !important;
+            object-fit: cover !important;
+            border-radius: 8px !important;
+            display: block;
+            margin: 0 auto 10px auto !important;
+            position: static !important;
+          }
+        
+          /* Center and size the floating cart button */
+          .cart-btn-fixed {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 36px !important; /* or 48px for more gap from bottom bar */
+            transform: translateX(-50%) !important;
+            width: 68px !important;
+            height: 68px !important;
+            font-size: 2em !important;
+          }
+          .cart-btn-fixed .cart-count {
+            top: 7px !important;
+            right: 7px !important;
+            font-size: .9em !important;
+            padding: 2px 6px !important;
+          }
+        
+          /* Center FAQ/Contact section as column and center .contact card */
+          .info-section {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 16px !important;
+            max-width: 99vw !important;
+          }
+          .contact {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: center !important;
+            width: 90vw !important;
+            max-width: 99vw !important;
+            min-width: 0 !important;
+            float: none !important;
+            display: block !important;
+          }
+          .faq {
+            width: 90vw !important;
+            max-width: 99vw !important;
+            min-width: 0 !important;
+            float: none !important;
+            display: block !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
         }
     </style>
 </head>
