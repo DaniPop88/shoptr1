@@ -60,25 +60,22 @@
         }
         .submit-btn:hover { background: #28a745; }
         .required { color: #c02618; }
-        .payment-methods { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px;}
+        .payment-methods { display:flex; flex-direction:column; gap:10px; margin-bottom:10px;}
         .payment-option {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
             cursor: pointer;
             background: #fafafa;
             transition: border 0.2s;
-            flex:1 0 44%;
+            font-size: 1.1em;
         }
         .payment-option.selected {
             border: 2px solid #155824;
             background: #e8fbe8;
-        }
-        .payment-option img {
-            width: 28px; height: 28px; object-fit: contain;
         }
         .hidden-radio {
             display: none;
@@ -186,13 +183,14 @@
         <a href="index.html" class="back-btn">Back to Shop</a>
     </div>
     <script>
-        // Payment platform list & logos
+        // Payment platform list (no logos, plus Cash On Delivery last)
         const paymentPlatforms = [
-            { name: "Gcash", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/GCash_logo.svg" },
-            { name: "Paymaya", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7c/PayMaya_Logo.png" },
-            { name: "Paypal", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" },
-            { name: "BPI", logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/BPI_logo.svg" },
-            { name: "BDO", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/BDO_logo.svg" },
+            { name: "Gcash" },
+            { name: "Paymaya" },
+            { name: "Paypal" },
+            { name: "BPI" },
+            { name: "BDO" },
+            { name: "CASH ON DELIVERY" }
         ];
 
         // Render payment options
@@ -204,7 +202,6 @@
             container.setAttribute('role', 'radio');
             container.setAttribute('aria-checked', 'false');
             container.innerHTML = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${idx}" value="${platform.name}">
-            <img src="${platform.logo}" alt="${platform.name} logo">
             <label for="pmethod${idx}" style="margin:0;cursor:pointer;">${platform.name}</label>`;
             container.onclick = () => selectPayment(idx);
             container.onkeydown = (e) => {
