@@ -7,7 +7,7 @@
     <style>
         body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4;}
         .summary-container {
-            max-width: 500px;
+            max-width: 520px;
             margin: 32px auto;
             background: #fff;
             padding: 30px;
@@ -60,6 +60,39 @@
         }
         .submit-btn:hover { background: #28a745; }
         .required { color: #c02618; }
+        .payment-methods { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px;}
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #fafafa;
+            transition: border 0.2s;
+            flex:1 0 44%;
+        }
+        .payment-option.selected {
+            border: 2px solid #155824;
+            background: #e8fbe8;
+        }
+        .payment-option img {
+            width: 28px; height: 28px; object-fit: contain;
+        }
+        .hidden-radio {
+            display: none;
+        }
+        .success-message {
+            color: #155824;
+            background: #e8fbe8;
+            border: 1px solid #b6e4b6;
+            padding: 18px 12px;
+            border-radius: 7px;
+            margin: 22px 0;
+            text-align: center;
+            font-size: 1.08em;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +100,12 @@
         <h1>Your Order Summary</h1>
         <ul id="order-list"></ul>
         <div class="total" id="order-total"></div>
-        <form class="checkout-form" id="checkout-form" autocomplete="off">
+
+        <form class="checkout-form" id="checkout-form" autocomplete="off" method="POST" action="https://formspree.io/f/xgvzwjlg">
+            <div class="form-group">
+                <label for="email">Your Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" maxlength="60" required>
+            </div>
             <div class="form-group">
                 <label for="name">Full Name <span class="required">*</span></label>
                 <input type="text" id="name" name="name" maxlength="40" required>
@@ -105,19 +143,60 @@
                 <input type="tel" id="phone" name="phone" maxlength="15" pattern="^09\d{9}$" placeholder="Ex: 09XXXXXXXXX" required>
             </div>
             <div class="form-group">
-                <label for="payment">Mode of Payment <span class="required">*</span></label>
-                <select id="payment" name="payment" required>
-                    <option value="">-- Select Payment Method --</option>
-                    <option value="Gcash">Gcash</option>
-                    <option value="Paymaya">Paymaya</option>
-                    <option value="Paypal">Paypal</option>
-                </select>
+                <label>Mode of Payment <span class="required">*</span></label>
+                <div class="payment-methods" id="payment-methods">
+                    <!-- Payment choices rendered by JS -->
+                </div>
+                <input type="hidden" name="payment" id="payment-hidden" required>
             </div>
-            <button type="submit" class="submit-btn">Place Order</button>
+            <input type="hidden" name="order_details" id="order-details-hidden">
+            <button type="submit" class="submit-btn">Confirm & Send Order</button>
         </form>
+        <div class="success-message" id="success-message" style="display:none;">
+            Thank you for your order!<br>
+            We’ll contact you via SMS or email shortly and send you a payment link or QR code for your chosen payment platform.<br>
+            <b>Please keep your phone open for a confirmation text!</b>
+        </div>
         <a href="index.html" class="back-btn">Back to Shop</a>
     </div>
     <script>
+        // Payment platform list & logos
+        const paymentPlatforms = [
+            { name: "Gcash", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/GCash_logo.svg" },
+            { name: "Paymaya", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7c/PayMaya_Logo.png" },
+            { name: "Paypal", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" },
+            { name: "BPI", logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/BPI_logo.svg" },
+            { name: "BDO", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/BDO_logo.svg" },
+        ];
+
+        // Render payment options
+        const paymentMethodsDiv = document.getElementById('payment-methods');
+        paymentPlatforms.forEach((platform, idx) => {
+            let container = document.createElement('div');
+            container.className = 'payment-option';
+            container.tabIndex = 0;
+            container.setAttribute('role', 'radio');
+            container.setAttribute('aria-checked', 'false');
+            container.innerHTML = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${idx}" value="${platform.name}">
+            <img src="${platform.logo}" alt="${platform.name} logo">
+            <label for="pmethod${idx}" style="margin:0;cursor:pointer;">${platform.name}</label>`;
+            container.onclick = () => selectPayment(idx);
+            container.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") selectPayment(idx);
+            };
+            paymentMethodsDiv.appendChild(container);
+        });
+
+        function selectPayment(idx) {
+            // Unselect all
+            document.querySelectorAll('.payment-option').forEach((el, i) => {
+                el.classList.toggle('selected', i === idx);
+                el.setAttribute('aria-checked', i === idx ? 'true' : 'false');
+                el.querySelector('.hidden-radio').checked = i === idx;
+            });
+            document.getElementById('payment-hidden').value = paymentPlatforms[idx].name;
+        }
+
         // Get cart from localStorage
         const cart = JSON.parse(localStorage.getItem('cart') || "[]");
         const orderList = document.getElementById('order-list');
@@ -128,72 +207,56 @@
             orderTotal.textContent = "";
             document.getElementById('checkout-form').style.display = "none";
         } else {
+            let detailsText = "";
             cart.forEach(item => {
                 const li = document.createElement('li');
                 li.textContent = `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
                 orderList.appendChild(li);
                 total += item.totalPrice;
+                detailsText += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}\n`;
             });
             orderTotal.textContent = `Total: ₱${total.toFixed(2)}`;
+            document.getElementById('order-details-hidden').value = detailsText + `Total: ₱${total.toFixed(2)}`;
         }
 
+        // Form submit logic
         document.getElementById('checkout-form').onsubmit = function(e){
-            e.preventDefault();
-            // Collect all fields
+            // Validate payment method
+            if (!document.getElementById('payment-hidden').value) {
+                alert("Please select your payment platform.");
+                return false;
+            }
+            // Validate required fields
             const name = document.getElementById('name').value.trim();
-            const organization = document.getElementById('organization').value.trim();
             const street = document.getElementById('street').value.trim();
             const suburb = document.getElementById('suburb').value.trim();
             const city = document.getElementById('city').value.trim();
             const postal = document.getElementById('postal').value.trim();
             const province = document.getElementById('province').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            const payment = document.getElementById('payment').value;
 
-            // Validate required fields
-            if (!name || !street || !suburb || !city || !postal || !province || !phone || !payment) {
+            if (!name || !street || !suburb || !city || !postal || !province || !phone) {
                 alert("Please fill out all required fields.");
                 return false;
             }
-
-            // Validate phone (Philippines mobile: 09XXXXXXXXX)
             if (!/^09\d{9}$/.test(phone)) {
                 alert("Please enter a valid Philippine mobile number (09XXXXXXXXX).");
                 document.getElementById('phone').focus();
                 return false;
             }
-
-            // Validate postal code (4-6 numbers, Philippines)
             if (!/^\d{4,6}$/.test(postal)) {
                 alert("Please enter a valid Philippine postal code (4 to 6 digits).");
                 document.getElementById('postal').focus();
                 return false;
             }
-
-            // Optionally, validate province/city/suburb (can add a check for "Philippines" in the future if needed)
-
-            // For now, just show a summary and "success" message
-            let addressSummary =
-                street + "\n" +
-                suburb + ", " + city + "\n" +
-                province + " " + postal + "\n" +
-                "Philippines";
-
-            alert(
-                "Order placed!\n\n" +
-                `Name: ${name}\n` +
-                (organization ? `Organization: ${organization}\n` : '') +
-                `Address:\n${addressSummary}\n` +
-                `Phone: ${phone}\n` +
-                `Payment: ${payment}\n\n` +
-                "Thank you for your order! We will contact you soon."
-            );
-            // Optionally, clear cart and form
-            localStorage.removeItem('cart');
-            document.getElementById('checkout-form').reset();
-            orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
-            orderTotal.textContent = "";
-            document.getElementById('checkout-form').style.display = "none";
+            // Allow normal Formspree submit, but clear and show message after.
+            setTimeout(function() {
+                document.getElementById('checkout-form').style.display = "none";
+                document.getElementById('success-message').style.display = "";
+                localStorage.removeItem('cart');
+                orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
+                orderTotal.textContent = "";
+            }, 1200); // Wait 1.2s for Formspree redirect (optional)
         };
     </script>
 </body>
