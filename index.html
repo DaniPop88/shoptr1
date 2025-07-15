@@ -10,6 +10,7 @@
     <meta property="og:image" content="https://i.ibb.co/0pxHp7H2/1.png">
     <meta property="og:url" content="https://mariecustomgoods.com">
     <meta name="twitter:card" content="summary_large_image">
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700,900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://i.ibb.co/bgbmHg3y/MARIE-CUSTOM-GOODS.png">
     <script type="application/ld+json">
     {
@@ -29,22 +30,33 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0; padding: 0;
+            min-height: 100vh;
+            /* Gradient top (site header), pale green bg */
+            background: linear-gradient(180deg, #11803B 0%, #43B047 110px, #EAF7EC 110px, #EAF7EC 100%);
+        }
         h1, h2, h3 { margin-top: 0; }
 
         header {
-            background: linear-gradient(to bottom, #28a745, #155824);
+            background: linear-gradient(180deg, #168C44 0%, #43B047 100%);
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 28px 0 18px 0;
             font-size: 2em;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            box-shadow: 0 4px 22px #0004;
         }
-        
-        /* --- ADD HERE --- */
         #main-logo {
             animation: popInOutMainLogo 4s ease-in-out infinite;
             display: block;
             margin: 0 auto;
+            border: 3px solid #e4c900;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 2px 14px #000a;
         }
         
         @keyframes popInOutMainLogo {
@@ -117,12 +129,12 @@
             justify-content: center;
         }
         .product {
-            background: #fff;
-            border: 1px solid #ddd;
+            background: #F6FFF8;
+            border: 2px solid #43B047;
+            border-radius: 14px;
+            box-shadow: 0 2px 10px #168C4414;
             padding: 15px;
             width: 250px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.10);
             text-align: center;
             position: relative;
         }
