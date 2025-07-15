@@ -14,7 +14,17 @@
             border-radius: 12px;
             box-shadow: 0 4px 18px rgba(0,0,0,.12);
         }
-        h1 { color: #155824; text-align:center;}
+        .brand-logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: contain;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(21,88,36,0.10);
+        }
+        h1 { color: #155824; text-align:center; }
         ul { list-style-type:none; padding:0; }
         li { margin-bottom:12px; font-size:1.1em; }
         .total { font-weight:bold; font-size:1.2em; color:#155824; margin-top:20px;}
@@ -72,10 +82,20 @@
             background: #fafafa;
             transition: border 0.2s;
             font-size: 1.1em;
+            min-width: 0;
         }
         .payment-option.selected {
             border: 2px solid #155824;
             background: #e8fbe8;
+        }
+        .payment-icon {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 7px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            margin-right: 6px;
         }
         .hidden-radio {
             display: none;
@@ -102,10 +122,17 @@
         .order-info-box strong {
             color: #155824;
         }
+        @media (max-width: 600px) {
+            .brand-logo { width: 60px; height: 60px; }
+            .payment-icon { width: 26px; height: 26px; }
+            .payment-option { font-size: 1em; }
+        }
     </style>
 </head>
 <body>
     <div class="summary-container">
+        <!-- LOGO ADDED -->
+        <img src="images/LOGO.png" alt="Marie Custom Goods Logo" class="brand-logo" loading="lazy" width="90" height="90">
         <h1>Your Order Summary</h1>
         <ul id="order-list"></ul>
         <div class="total" id="order-total"></div>
@@ -183,25 +210,33 @@
         <a href="index.html" class="back-btn">Back to Shop</a>
     </div>
     <script>
-        // Payment platform list (no logos, plus Cash On Delivery last)
+        // Payment platform list with icons
         const paymentGroups = [
-            [{ name: "GCASH" }],
-            [{ name: "PAYPAL" }, { name: "PAYMAYA" }],
-            [{ name: "BDO" }, { name: "BPI" }],
-            [{ name: "CASH ON DELIVERY" }]
+            [
+                { name: "GCASH", icon: "images/GCASH.png" }
+            ],
+            [
+                { name: "PAYPAL", icon: "images/PAYPAL.png" },
+                { name: "PAYMAYA", icon: "images/PAYMAYA.png" }
+            ],
+            [
+                { name: "BDO", icon: "images/BDO.png" },
+                { name: "BPI", icon: "images/BPI.png" }
+            ],
+            [
+                { name: "CASH ON DELIVERY", icon: "" }
+            ]
         ];
-    
+
         const paymentMethodsDiv = document.getElementById('payment-methods');
         let paymentIdx = 0; // unique radio id for each option
-    
+
         // Render payment options by group
         paymentGroups.forEach((group, groupIdx) => {
-            // Container for the group
             let groupDiv = document.createElement('div');
             groupDiv.style.display = "flex";
             groupDiv.style.gap = "10px";
             groupDiv.style.marginBottom = "10px";
-    
             group.forEach(platform => {
                 let container = document.createElement('div');
                 container.className = 'payment-option';
@@ -209,9 +244,13 @@
                 container.setAttribute('role', 'radio');
                 container.setAttribute('aria-checked', 'false');
                 container.style.flex = "1";
-    
+                let iconHtml = platform.icon
+                    ? `<img src="${platform.icon}" class="payment-icon" alt="${platform.name} logo" loading="lazy">`
+                    : '';
                 container.innerHTML = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}">
-                <label for="pmethod${paymentIdx}" style="margin:0;cursor:pointer;">${platform.name}</label>`;
+                <label for="pmethod${paymentIdx}" style="margin:0;cursor:pointer;display:flex;align-items:center;gap:8px;">
+                    ${iconHtml}<span>${platform.name}</span>
+                </label>`;
                 container.onclick = () => selectPayment(paymentIdx);
                 container.onkeydown = (e) => {
                     if (e.key === "Enter" || e.key === " ") selectPayment(paymentIdx);
@@ -219,18 +258,15 @@
                 groupDiv.appendChild(container);
                 paymentIdx++;
             });
-    
             paymentMethodsDiv.appendChild(groupDiv);
         });
-    
+
         function selectPayment(idx) {
-            // Unselect all
             document.querySelectorAll('.payment-option').forEach((el, i) => {
                 el.classList.toggle('selected', i === idx);
                 el.setAttribute('aria-checked', i === idx ? 'true' : 'false');
                 el.querySelector('.hidden-radio').checked = i === idx;
             });
-            // Find selected radio for value
             let radios = document.querySelectorAll('.hidden-radio');
             for (let i = 0; i < radios.length; i++) {
                 if (radios[i].checked) {
@@ -264,12 +300,10 @@
 
         // Form submit logic
         document.getElementById('checkout-form').onsubmit = function(e){
-            // Validate payment method
             if (!document.getElementById('payment-hidden').value) {
                 alert("Please select your payment platform.");
                 return false;
             }
-            // Validate required fields
             const name = document.getElementById('name').value.trim();
             const street = document.getElementById('street').value.trim();
             const suburb = document.getElementById('suburb').value.trim();
@@ -292,14 +326,13 @@
                 document.getElementById('postal').focus();
                 return false;
             }
-            // Allow normal Formspree submit, but clear and show message after.
             setTimeout(function() {
                 document.getElementById('checkout-form').style.display = "none";
                 document.getElementById('success-message').style.display = "";
                 localStorage.removeItem('cart');
                 orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
                 orderTotal.textContent = "";
-            }, 1200); // Wait 1.2s for Formspree redirect (optional)
+            }, 1200);
         };
     </script>
 </body>
