@@ -2,246 +2,239 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Summary - Marie Custom Goods</title>
+    <title>Marie Custom Goods - Secure Checkout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order checkout page for Marie Custom Goods. Enjoy custom products, flexible payment, and fast local shipping.">
     <style>
-        body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4;}
-        .summary-container { max-width:520px; margin:32px auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,.12);}
-        .brand-logo { display:block; margin:0 auto 20px auto; width:90px; height:90px; border-radius:50%; object-fit:contain; background:#fff; box-shadow:0 2px 8px rgba(21,88,36,0.10);}
-        h1 { color:#155824; text-align:center;}
-        ul { list-style-type:none; padding:0;}
-        li { margin-bottom:12px; font-size:1.1em;}
-        .total { font-weight:bold; font-size:1.2em; color:#155824; margin-top:20px;}
-        .form-group { margin-bottom:16px;}
-        label { font-weight:bold; display:block; margin-bottom:6px;}
-        input, select, textarea { width:100%; padding:8px; font-size:1em; border-radius:5px; border:1px solid #ccc; box-sizing:border-box;}
-        textarea { resize:vertical; min-height:48px;}
-        .submit-btn { width:100%; background:#155824; color:#fff; border:none; border-radius:6px; padding:12px 0; font-size:1.1em; cursor:pointer; margin-top:10px; transition:background 0.2s;}
-        .submit-btn:hover { background:#28a745;}
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin:0; padding:0; background:#f4f7ef;}
+        .order-box { max-width:540px; margin:36px auto; background:#fff; padding:34px 34px 24px 34px; border-radius:14px; box-shadow:0 6px 24px rgba(21,88,36,0.08);}
+        .logo-img { display:block; margin:0 auto 18px auto; width:80px; height:80px; border-radius:50%; object-fit:cover; background:#fff; box-shadow:0 2px 8px rgba(21,88,36,0.07);}
+        h1 { color:#157a42; text-align:center; font-weight:700; font-size:2em; margin-bottom:18px;}
+        #itemList { list-style-type:none; padding:0; margin-bottom:10px;}
+        #itemList li { margin-bottom:13px; font-size:1.08em; color:#2c493b;}
+        .amount-due { font-weight:600; font-size:1.15em; color:#157a42; margin:18px 0 26px 0;}
+        fieldset { border:none; padding:0; margin-bottom:20px;}
+        legend { font-weight:600; color:#157a42; margin-bottom:10px;}
+        label { font-weight:500; display:block; margin-bottom:6px;}
+        input, select, textarea {
+            width:100%; padding:9px; font-size:1em; border-radius:5px; border:1px solid #cdd3d1; box-sizing:border-box;
+            background:#f9fbf7;
+        }
+        textarea { resize:vertical; min-height:46px; }
+        .action-btn {
+            width:100%; background:#ddcf0e; color:#1c1c1c; border:none; border-radius:7px;
+            padding:13px 0; font-size:1.09em; font-weight:600; cursor:pointer; margin-top:15px;
+            transition:background 0.18s;
+        }
+        .action-btn:hover { background:#cec30c; }
         .required { color:#c02618;}
-        .payment-methods { display:flex; flex-direction:column; gap:10px; margin-bottom:10px;}
-        .payment-options-row { display:flex; gap:10px; margin-bottom:10px;}
+        .payment-methods { display:flex; flex-direction:column; gap:12px; margin-bottom:10px;}
+        .payment-options-row { display:flex; gap:12px; margin-bottom:10px;}
         .payment-option {
             display:flex; align-items:center; gap:8px;
-            padding:8px 12px; border:1px solid #ddd; border-radius:5px; cursor:pointer;
-            background:#fafafa; transition:border 0.2s, background 0.2s;
-            font-size:1.1em; min-width:0; user-select:none; flex:1;
+            padding:9px 13px; border:1px solid #e0e6e2; border-radius:6px; cursor:pointer;
+            background:#f6f7f3; transition:border 0.22s, background 0.2s;
+            font-size:1.09em; user-select:none; flex:1;
         }
         .payment-option.selected {
-            border:2px solid #155824; background:#e8fbe8;
+            border:2px solid #ddcf0e; background:#fffbe8;
         }
-        .payment-icon { width:34px; height:34px; object-fit:contain; background:#fff; border-radius:7px; box-shadow:0 1px 4px rgba(0,0,0,0.07); margin-right:6px;}
+        .payment-icon { width:30px; height:30px; object-fit:contain; background:#fff; border-radius:7px; box-shadow:0 1px 4px rgba(0,0,0,0.07);}
         .hidden-radio { display:none;}
-        .success-message { color:#155824; background:#e8fbe8; border:1px solid #b6e4b6; padding:18px 12px; border-radius:7px; margin:22px 0; text-align:center; font-size:1.08em;}
-        .order-info-box { background:#f6f9ff; border-left:4px solid #155824; padding:16px 18px; margin:30px 0 0 0; border-radius:7px; color:#233; font-size:1.05em;}
-        .order-info-box strong { color:#155824;}
-        .empty { color:#888; text-align:center; margin:30px 0;}
-        .back-btn {
-            display: block;
-            margin: 24px auto 0 auto;
-            background: #ddcf0e;
-            color: #222;
-            border: none;
-            border-radius: 6px;
-            padding: 14px 36px;
-            font-size: 1.08em;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-            box-shadow: 0 2px 8px rgba(21,88,36,0.10);
-            letter-spacing: 0.01em;
-            width: fit-content;
-            min-width: 180px;
+        .success-message {
+            color:#157a42; background:#e8fbe8; border:1px solid #b6e4b6;
+            padding:20px 14px; border-radius:8px; margin:24px 0 0 0; text-align:center; font-size:1.10em; font-weight:500;
         }
-        .back-btn:hover, .back-btn:focus {
-            background: #c7bc10;
-            color: #000;
-            box-shadow: 0 4px 14px rgba(21,88,36,0.13);
-            text-decoration: none;
-            outline: none;
+        .info-panel {
+            background:#f2f7fa; border-left:5px solid #157a42;
+            padding:18px 18px; margin:32px 0 0 0; border-radius:8px; color:#223; font-size:1.07em;
         }
+        .info-panel h2 { color:#ddcf0e; font-size:1.1em; margin-bottom:7px;}
+        .nav-btn {
+            display: block; margin: 28px auto 0 auto; background: #157a42; color: #fff;
+            border: none; border-radius: 7px; padding: 14px 36px; font-size: 1.07em; font-weight: bold;
+            cursor: pointer; text-align: center; text-decoration: none; transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            box-shadow: 0 2px 10px rgba(21,88,36,0.08); letter-spacing: 0.01em; width: fit-content; min-width: 160px;
+        }
+        .nav-btn:hover, .nav-btn:focus { background: #0d5828; color: #fff; box-shadow: 0 4px 18px rgba(21,88,36,0.16); text-decoration: none; outline: none;}
+        .empty { color: #888; text-align:center; margin: 32px 0; font-style:italic;}
         @media (max-width:600px) {
-            .brand-logo { width:60px; height:60px;}
-            .payment-icon { width:26px; height:26px;}
-            .payment-option { font-size:1em;}
-            .back-btn { min-width: 120px; padding: 12px 18px; font-size: 1em;}
+            .order-box { padding:15px 6px 20px 6px;}
+            .logo-img { width:52px; height:52px;}
+            .payment-icon { width:20px; height:20px;}
+            .payment-option { font-size:0.97em;}
+            .nav-btn { min-width: 98px; padding: 12px 14px;}
         }
     </style>
 </head>
 <body>
-<div class="summary-container">
-    <img src="images/LOGO.png" alt="Marie Custom Goods Logo" class="brand-logo" loading="lazy" width="90" height="90">
-    <h1>Your Order Summary</h1>
-    <ul id="order-list"></ul>
-    <div class="total" id="order-total"></div>
-    <form class="checkout-form" id="checkout-form" autocomplete="off" method="POST" action="https://formspree.io/f/xgvzwjlg">
-        <div class="form-group">
-            <label for="email">Your Email <span class="required">*</span></label>
-            <input type="email" id="email" name="email" maxlength="60" required>
+    <main class="order-box">
+        <header>
+            <img src="images/LOGO.png" alt="Marie Custom Goods Logo" class="logo-img" loading="lazy" width="80" height="80">
+            <h1>Complete Your Purchase</h1>
+        </header>
+        <ul id="itemList"></ul>
+        <div class="amount-due" id="totalDisplay"></div>
+        <form id="purchaseForm" autocomplete="off" method="POST" action="https://formspree.io/f/xgvzwjlg">
+            <fieldset>
+                <legend>Contact & Shipping Details</legend>
+                <label for="userEmail">Email Address <span class="required">*</span></label>
+                <input type="email" id="userEmail" name="email" maxlength="60" required>
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="name" maxlength="40" required>
+                <label for="org">Organization (Optional)</label>
+                <input type="text" id="org" name="organization" maxlength="40">
+                <label for="address">Street Address <span class="required">*</span></label>
+                <textarea id="address" name="street" maxlength="120" required></textarea>
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1;">
+                        <label for="area">Suburb <span class="required">*</span></label>
+                        <input type="text" id="area" name="suburb" maxlength="30" required>
+                    </div>
+                    <div style="flex:1;">
+                        <label for="city">City <span class="required">*</span></label>
+                        <input type="text" id="city" name="city" maxlength="30" required>
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1;">
+                        <label for="postal">Postal Code <span class="required">*</span></label>
+                        <input type="text" id="postal" name="postal" maxlength="8" required pattern="^\d{4,6}$">
+                    </div>
+                    <div style="flex:1;">
+                        <label for="province">Province <span class="required">*</span></label>
+                        <input type="text" id="province" name="province" maxlength="30" required>
+                    </div>
+                </div>
+                <label for="phoneContact">Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="phoneContact" name="phone" maxlength="13" pattern="^\+639\d{9}$" placeholder="Ex: +639XXXXXXXXX" required>
+            </fieldset>
+            <fieldset>
+                <legend>Payment Method</legend>
+                <div class="payment-methods" id="payment-methods"></div>
+                <input type="hidden" name="payment" id="payment-hidden" required>
+            </fieldset>
+            <input type="hidden" name="order_details" id="order-details-hidden">
+            <button type="submit" class="action-btn">Place Order</button>
+        </form>
+        <div class="success-message" id="success-message" style="display:none;">
+            Your order has been received! <br><br>
+            Expect a message from us soon with your payment link and further instructions. <br>
+            <b>Please keep your mobile device nearby for our confirmation SMS!</b>
         </div>
-        <div class="form-group">
-            <label for="name">Full Name <span class="required">*</span></label>
-            <input type="text" id="name" name="name" maxlength="40" required>
-        </div>
-        <div class="form-group">
-            <label for="organization">Organization (Optional)</label>
-            <input type="text" id="organization" name="organization" maxlength="40">
-        </div>
-        <div class="form-group">
-            <label for="street">Street Address <span class="required">*</span></label>
-            <textarea id="street" name="street" maxlength="120" required></textarea>
-        </div>
-        <div style="display:flex; gap:10px;">
-            <div class="form-group" style="flex:1;">
-                <label for="suburb">Suburb <span class="required">*</span></label>
-                <input type="text" id="suburb" name="suburb" maxlength="30" required>
+        <aside class="info-panel">
+            <h2>How Marie Custom Goods Works</h2>
+            <ul style="margin-left:1.4em;">
+                <li><b>Business Hours:</b> Mon–Fri, 9:00 AM–6:00 PM. Closed weekends.</li>
+                <li><b>Order Confirmation:</b> Our team will verify your order, confirm available product options, and send a summary with shipping and payment instructions.</li>
+                <li><b>Payment:</b> You'll receive a secure link for your chosen payment platform. Please pay <b>within 24 hours</b> to avoid automatic cancellation.</li>
+                <li><b>Fulfillment:</b> Orders are prepared in <b>1–3 business days</b> after payment. Delivery times vary by location and courier.</li>
+                <li><b>Questions?</b> Contact us at <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a> for prompt assistance.</li>
+            </ul>
+            <div style="margin-top:15px;">
+                <b>Thank you for shopping with Marie Custom Goods.<br>
+                We appreciate your trust and look forward to crafting something special for you!</b>
             </div>
-            <div class="form-group" style="flex:1;">
-                <label for="city">City <span class="required">*</span></label>
-                <input type="text" id="city" name="city" maxlength="30" required>
-            </div>
-        </div>
-        <div style="display:flex; gap:10px;">
-            <div class="form-group" style="flex:1;">
-                <label for="postal">Postal Code <span class="required">*</span></label>
-                <input type="text" id="postal" name="postal" maxlength="8" required pattern="^\d{4,6}$">
-            </div>
-            <div class="form-group" style="flex:1;">
-                <label for="province">Province <span class="required">*</span></label>
-                <input type="text" id="province" name="province" maxlength="30" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone Number <span class="required">*</span></label>
-            <input type="tel" id="phone" name="phone" maxlength="13" pattern="^\+639\d{9}$" placeholder="Ex: +639XXXXXXXXX" required>
-        </div>
-        <div class="form-group">
-            <label>Mode of Payment <span class="required">*</span></label>
-            <div class="payment-methods" id="payment-methods"></div>
-            <input type="hidden" name="payment" id="payment-hidden" required>
-        </div>
-        <input type="hidden" name="order_details" id="order-details-hidden">
-        <button type="submit" class="submit-btn">Confirm & Send Order</button>
-    </form>
-    <div class="success-message" id="success-message" style="display:none;">
-        Thank you for your order!<br>
-        We’ll contact you via SMS or email shortly and send you a payment link or QR code for your chosen payment platform.<br><br>
-        <b>Please keep your phone open for a confirmation text!</b>
-    </div>
-    <div class="order-info-box">
-        <strong>Order Processing & Confirmation</strong><br><br>
-        We will process your order within our business hours:<br>
-        <strong>Monday – Friday: 9:00 AM – 6:00 PM</strong><br>
-        Saturday & Sunday: Closed<br><br>
-        Our representative will get in touch with you to give you the final calculation of shipping fee and total order. You will then receive a direct payment link for your chosen payment platform.<br><br>
-        <strong>Please complete your payment within 24 hours to avoid cancellation.</strong><br><br>
-        Processing your items will take <strong>1 to 3 working days</strong>. Shipping time may vary depending on your location and the logistics provider.<br><br>
-        If you have any questions or need assistance, please contact us at <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a>.<br><br>
-        <strong>Thank you for your order with MARIE CUSTOM GOODS. We look forward to your next purchase!</strong>
-    </div>
-    <a href="index.html" class="back-btn">← Back to Shop</a>
-</div>
-<script>
-    // Payment platforms (add your icon path if you wish)
-    const paymentGroups = [
-        [{ name: "GCASH", icon: "images/GCASH.png" }],
-        [{ name: "PAYPAL", icon: "images/PAYPAL.png" }, { name: "PAYMAYA", icon: "images/PAYMAYA.png" }],
-        [{ name: "BDO", icon: "images/BDO.png" }, { name: "BPI", icon: "images/BPI.png" }],
-        [{ name: "CASH ON DELIVERY", icon: "" }]
-    ];
-    const paymentMethodsDiv = document.getElementById('payment-methods');
-    let paymentIdx = 0;
-    paymentGroups.forEach((group) => {
-        let groupDiv = document.createElement('div');
-        groupDiv.className = 'payment-options-row';
-        group.forEach(platform => {
-            let container = document.createElement('div');
-            container.className = 'payment-option';
-            container.tabIndex = 0;
-            container.setAttribute('role', 'radio');
-            container.setAttribute('aria-checked', 'false');
-            container.style.flex = "1";
-            let html = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}">`;
-            if (platform.icon) html += `<img src="${platform.icon}" class="payment-icon" alt="${platform.name}">`;
-            html += `<span>${platform.name}</span>`;
-            container.innerHTML = html;
-            // Only this: set value and visual on click
-            container.addEventListener('click', function(e) {
-                document.querySelectorAll('.payment-option').forEach((el, i) => {
-                    el.classList.toggle('selected', el === container);
-                    el.setAttribute('aria-checked', el === container ? 'true' : 'false');
-                    el.querySelector('.hidden-radio').checked = el === container;
+        </aside>
+        <a href="index.html" class="nav-btn">← Back to Shop</a>
+    </main>
+    <script>
+        // Payment platform rendering
+        const paymentGroups = [
+            [{ name: "GCASH", icon: "images/GCASH.png" }],
+            [{ name: "PAYPAL", icon: "images/PAYPAL.png" }, { name: "PAYMAYA", icon: "images/PAYMAYA.png" }],
+            [{ name: "BDO", icon: "images/BDO.png" }, { name: "BPI", icon: "images/BPI.png" }],
+            [{ name: "CASH ON DELIVERY", icon: "" }]
+        ];
+        const paymentMethodsDiv = document.getElementById('payment-methods');
+        let paymentIdx = 0;
+        paymentGroups.forEach((group) => {
+            let groupDiv = document.createElement('div');
+            groupDiv.className = 'payment-options-row';
+            group.forEach(platform => {
+                let container = document.createElement('div');
+                container.className = 'payment-option';
+                container.tabIndex = 0;
+                container.setAttribute('role', 'radio');
+                container.setAttribute('aria-checked', 'false');
+                let html = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}">`;
+                if (platform.icon) html += `<img src="${platform.icon}" class="payment-icon" alt="${platform.name}">`;
+                html += `<span>${platform.name}</span>`;
+                container.innerHTML = html;
+                container.addEventListener('click', function(e) {
+                    document.querySelectorAll('.payment-option').forEach((el) => {
+                        el.classList.toggle('selected', el === container);
+                        el.setAttribute('aria-checked', el === container ? 'true' : 'false');
+                        el.querySelector('.hidden-radio').checked = el === container;
+                    });
+                    document.getElementById('payment-hidden').value = platform.name;
                 });
-                document.getElementById('payment-hidden').value = platform.name;
+                container.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter" || e.key === " ") container.click();
+                });
+                groupDiv.appendChild(container);
+                paymentIdx++;
             });
-            container.addEventListener('keydown', function(e) {
-                if (e.key === "Enter" || e.key === " ") container.click();
-            });
-            groupDiv.appendChild(container);
-            paymentIdx++;
+            paymentMethodsDiv.appendChild(groupDiv);
         });
-        paymentMethodsDiv.appendChild(groupDiv);
-    });
 
-    // Cart loading from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart') || "[]");
-    const orderList = document.getElementById('order-list');
-    const orderTotal = document.getElementById('order-total');
-    let total = 0;
-    if (cart.length === 0) {
-        orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
-        orderTotal.textContent = "";
-        document.getElementById('checkout-form').style.display = "none";
-    } else {
-        let detailsText = "";
-        cart.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
-            orderList.appendChild(li);
-            total += item.totalPrice;
-            detailsText += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}\n`;
-        });
-        orderTotal.textContent = `Total: ₱${total.toFixed(2)}`;
-        document.getElementById('order-details-hidden').value = detailsText + `Total: ₱${total.toFixed(2)}`;
-    }
-
-    // Form validation and submit
-    document.getElementById('checkout-form').onsubmit = function(e){
-        if (!document.getElementById('payment-hidden').value) {
-            alert("Please select your payment platform.");
-            return false;
-        }
-        const name = document.getElementById('name').value.trim();
-        const street = document.getElementById('street').value.trim();
-        const suburb = document.getElementById('suburb').value.trim();
-        const city = document.getElementById('city').value.trim();
-        const postal = document.getElementById('postal').value.trim();
-        const province = document.getElementById('province').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        if (!name || !street || !suburb || !city || !postal || !province || !phone) {
-            alert("Please fill out all required fields.");
-            return false;
-        }
-        if (!/^\+639\d{9}$/.test(phone)) {
-            alert("Please enter a valid Philippine mobile number (+639XXXXXXXXX).");
-            document.getElementById('phone').focus();
-            return false;
-        }
-        if (!/^\d{4,6}$/.test(postal)) {
-            alert("Please enter a valid Philippine postal code (4 to 6 digits).");
-            document.getElementById('postal').focus();
-            return false;
-        }
-        setTimeout(function() {
-            document.getElementById('checkout-form').style.display = "none";
-            document.getElementById('success-message').style.display = "";
-            localStorage.removeItem('cart');
+        // Cart loading from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart') || "[]");
+        const orderList = document.getElementById('itemList');
+        const orderTotal = document.getElementById('totalDisplay');
+        let total = 0;
+        if (cart.length === 0) {
             orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
             orderTotal.textContent = "";
-        }, 1200);
-    };
-</script>
+            document.getElementById('purchaseForm').style.display = "none";
+        } else {
+            let detailsText = "";
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.itemName} × ${item.quantity} — ₱${item.totalPrice.toFixed(2)}`;
+                orderList.appendChild(li);
+                total += item.totalPrice;
+                detailsText += `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}\n`;
+            });
+            orderTotal.textContent = `Total Amount: ₱${total.toFixed(2)}`;
+            document.getElementById('order-details-hidden').value = detailsText + `Total: ₱${total.toFixed(2)}`;
+        }
+
+        // Form validation and submit
+        document.getElementById('purchaseForm').onsubmit = function(e){
+            if (!document.getElementById('payment-hidden').value) {
+                alert("Please choose your payment method.");
+                return false;
+            }
+            const name = document.getElementById('fullName').value.trim();
+            const street = document.getElementById('address').value.trim();
+            const suburb = document.getElementById('area').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const postal = document.getElementById('postal').value.trim();
+            const province = document.getElementById('province').value.trim();
+            const phone = document.getElementById('phoneContact').value.trim();
+            if (!name || !street || !suburb || !city || !postal || !province || !phone) {
+                alert("Please complete all required fields.");
+                return false;
+            }
+            if (!/^\+639\d{9}$/.test(phone)) {
+                alert("Enter a valid Philippine mobile number (+639XXXXXXXXX).");
+                document.getElementById('phoneContact').focus();
+                return false;
+            }
+            if (!/^\d{4,6}$/.test(postal)) {
+                alert("Postal code should be 4 to 6 digits.");
+                document.getElementById('postal').focus();
+                return false;
+            }
+            setTimeout(function() {
+                document.getElementById('purchaseForm').style.display = "none";
+                document.getElementById('success-message').style.display = "";
+                localStorage.removeItem('cart');
+                orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
+                orderTotal.textContent = "";
+            }, 1200);
+        };
+    </script>
 </body>
 </html>
