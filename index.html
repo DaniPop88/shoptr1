@@ -40,14 +40,20 @@
         h1, h2, h3 { margin-top: 0; }
 
         header {
-            background: linear-gradient(180deg, #168C44 0%, #43B047 100%);
+            background-color: #168C44;
+            background-image: 
+                url('images/LOGO.png'), 
+                linear-gradient(180deg, #168C44 0%, #43B047 100%);
+            background-size: 90px 90px, 100% 100%;
+            background-repeat: repeat, no-repeat;
+            background-position: center center, center center;
             color: #fff;
             text-align: center;
             padding: 28px 0 18px 0;
             font-size: 2em;
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
             box-shadow: 0 4px 22px #0004;
+            position: relative;
+            z-index: 1;
         }
         #main-logo {
             animation: popInOutMainLogo 4s ease-in-out infinite;
@@ -70,8 +76,9 @@
         .hero {
             text-align: center;
             padding: 40px;
-            background-color: #155824;
+            background: linear-gradient(180deg, #43B047 100%, #168C44 0%);
             color: #fff;
+            box-shadow: 0 4px 22px #0004;
         }
         .hero h1 { font-size: 2.5em; margin-bottom: 10px; }
         .hero p { font-size: 1.5em; margin-bottom: 20px; }
