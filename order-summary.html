@@ -190,23 +190,39 @@
             [{ name: "BDO" }, { name: "BPI" }],
             [{ name: "CASH ON DELIVERY" }]
         ];
-        // Render payment options
+    
         const paymentMethodsDiv = document.getElementById('payment-methods');
-        paymentPlatforms.forEach((platform, idx) => {
-            let container = document.createElement('div');
-            container.className = 'payment-option';
-            container.tabIndex = 0;
-            container.setAttribute('role', 'radio');
-            container.setAttribute('aria-checked', 'false');
-            container.innerHTML = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${idx}" value="${platform.name}">
-            <label for="pmethod${idx}" style="margin:0;cursor:pointer;">${platform.name}</label>`;
-            container.onclick = () => selectPayment(idx);
-            container.onkeydown = (e) => {
-                if (e.key === "Enter" || e.key === " ") selectPayment(idx);
-            };
-            paymentMethodsDiv.appendChild(container);
+        let paymentIdx = 0; // unique radio id for each option
+    
+        // Render payment options by group
+        paymentGroups.forEach((group, groupIdx) => {
+            // Container for the group
+            let groupDiv = document.createElement('div');
+            groupDiv.style.display = "flex";
+            groupDiv.style.gap = "10px";
+            groupDiv.style.marginBottom = "10px";
+    
+            group.forEach(platform => {
+                let container = document.createElement('div');
+                container.className = 'payment-option';
+                container.tabIndex = 0;
+                container.setAttribute('role', 'radio');
+                container.setAttribute('aria-checked', 'false');
+                container.style.flex = "1";
+    
+                container.innerHTML = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}">
+                <label for="pmethod${paymentIdx}" style="margin:0;cursor:pointer;">${platform.name}</label>`;
+                container.onclick = () => selectPayment(paymentIdx);
+                container.onkeydown = (e) => {
+                    if (e.key === "Enter" || e.key === " ") selectPayment(paymentIdx);
+                };
+                groupDiv.appendChild(container);
+                paymentIdx++;
+            });
+    
+            paymentMethodsDiv.appendChild(groupDiv);
         });
-
+    
         function selectPayment(idx) {
             // Unselect all
             document.querySelectorAll('.payment-option').forEach((el, i) => {
@@ -214,7 +230,14 @@
                 el.setAttribute('aria-checked', i === idx ? 'true' : 'false');
                 el.querySelector('.hidden-radio').checked = i === idx;
             });
-            document.getElementById('payment-hidden').value = paymentPlatforms[idx].name;
+            // Find selected radio for value
+            let radios = document.querySelectorAll('.hidden-radio');
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    document.getElementById('payment-hidden').value = radios[i].value;
+                    break;
+                }
+            }
         }
 
         // Get cart from localStorage
