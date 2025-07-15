@@ -5,7 +5,6 @@
     <title>Order Summary - Marie Custom Goods</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* ... CSS sama seperti file sebelumnya ... */
         body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4;}
         .summary-container { max-width: 520px; margin: 32px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.12);}
         .brand-logo { display: block; margin: 0 auto 20px auto; width: 90px; height: 90px; border-radius: 50%; object-fit: contain; background: #fff; box-shadow: 0 2px 8px rgba(21,88,36,0.10);}
@@ -163,8 +162,7 @@
         const paymentMethodsDiv = document.getElementById('payment-methods');
         let paymentIdx = 0;
 
-        // Render payment options by group
-        paymentGroups.forEach((group) => {
+        paymentGroups.forEach(group => {
             let groupDiv = document.createElement('div');
             groupDiv.className = 'payment-options-row';
             group.forEach(platform => {
@@ -174,7 +172,8 @@
                 container.setAttribute('role', 'radio');
                 container.setAttribute('aria-checked', 'false');
                 container.dataset.idx = paymentIdx;
-                // Radio button hidden, not in label
+
+                // Hidden radio for accessibility/data only
                 let radio = document.createElement('input');
                 radio.type = 'radio';
                 radio.className = 'hidden-radio';
@@ -196,7 +195,9 @@
                 span.textContent = platform.name;
                 container.appendChild(span);
 
-                container.addEventListener('click', function() { selectPayment(paymentIdx); });
+                container.addEventListener('click', function(e) {
+                    selectPayment(paymentIdx);
+                });
                 container.addEventListener('keydown', function(e) {
                     if (e.key === "Enter" || e.key === " ") selectPayment(paymentIdx);
                 });
@@ -243,7 +244,6 @@
             document.getElementById('order-details-hidden').value = detailsText + `Total: ₱${total.toFixed(2)}`;
         }
 
-        // Form submit logic
         document.getElementById('checkout-form').onsubmit = function(e){
             if (!document.getElementById('payment-hidden').value) {
                 alert("Please select your payment platform.");
