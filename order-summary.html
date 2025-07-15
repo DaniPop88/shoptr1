@@ -176,7 +176,7 @@
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number <span class="required">*</span></label>
-                <input type="tel" id="phone" name="phone" maxlength="15" pattern="^09\d{9}$" placeholder="Ex: 09XXXXXXXXX" required>
+                <input type="tel" id="phone" name="phone" maxlength="13" pattern="^\+639\d{9}$" placeholder="Ex: +639XXXXXXXXX" required>
             </div>
             <div class="form-group">
                 <label>Mode of Payment <span class="required">*</span></label>
@@ -229,10 +229,10 @@
         ];
 
         const paymentMethodsDiv = document.getElementById('payment-methods');
-        let paymentIdx = 0; // unique radio id for each option
+        let paymentIdx = 0;
 
         // Render payment options by group
-        paymentGroups.forEach((group, groupIdx) => {
+        paymentGroups.forEach((group) => {
             let groupDiv = document.createElement('div');
             groupDiv.style.display = "flex";
             groupDiv.style.gap = "10px";
@@ -244,17 +244,20 @@
                 container.setAttribute('role', 'radio');
                 container.setAttribute('aria-checked', 'false');
                 container.style.flex = "1";
+                container.dataset.idx = paymentIdx;
+
                 let iconHtml = platform.icon
                     ? `<img src="${platform.icon}" class="payment-icon" alt="${platform.name} logo" loading="lazy">`
                     : '';
-                container.innerHTML = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}">
-                <label for="pmethod${paymentIdx}" style="margin:0;cursor:pointer;display:flex;align-items:center;gap:8px;">
+                // Radio button bukan child label, dan tidak diklik langsung
+                container.innerHTML = `
+                    <input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}" tabindex="-1">
                     ${iconHtml}<span>${platform.name}</span>
-                </label>`;
-                container.onclick = () => selectPayment(paymentIdx);
-                container.onkeydown = (e) => {
+                `;
+                container.addEventListener('click', function() { selectPayment(paymentIdx); });
+                container.addEventListener('keydown', function(e) {
                     if (e.key === "Enter" || e.key === " ") selectPayment(paymentIdx);
-                };
+                });
                 groupDiv.appendChild(container);
                 paymentIdx++;
             });
@@ -316,8 +319,8 @@
                 alert("Please fill out all required fields.");
                 return false;
             }
-            if (!/^09\d{9}$/.test(phone)) {
-                alert("Please enter a valid Philippine mobile number (09XXXXXXXXX).");
+            if (!/^\+639\d{9}$/.test(phone)) {
+                alert("Please enter a valid Philippine mobile number (+639XXXXXXXXX).");
                 document.getElementById('phone').focus();
                 return false;
             }
