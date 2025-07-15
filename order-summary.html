@@ -184,15 +184,12 @@
     </div>
     <script>
         // Payment platform list (no logos, plus Cash On Delivery last)
-        const paymentPlatforms = [
-            { name: "Gcash" },
-            { name: "Paymaya" },
-            { name: "Paypal" },
-            { name: "BPI" },
-            { name: "BDO" },
-            { name: "CASH ON DELIVERY" }
+        const paymentGroups = [
+            [{ name: "GCASH" }],
+            [{ name: "PAYPAL" }, { name: "PAYMAYA" }],
+            [{ name: "BDO" }, { name: "BPI" }],
+            [{ name: "CASH ON DELIVERY" }]
         ];
-
         // Render payment options
         const paymentMethodsDiv = document.getElementById('payment-methods');
         paymentPlatforms.forEach((platform, idx) => {
