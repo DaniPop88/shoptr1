@@ -36,10 +36,37 @@
         .order-info-box { background:#f6f9ff; border-left:4px solid #155824; padding:16px 18px; margin:30px 0 0 0; border-radius:7px; color:#233; font-size:1.05em;}
         .order-info-box strong { color:#155824;}
         .empty { color:#888; text-align:center; margin:30px 0;}
+        .back-btn {
+            display: block;
+            margin: 24px auto 0 auto;
+            background: #ddcf0e;
+            color: #222;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 36px;
+            font-size: 1.08em;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            box-shadow: 0 2px 8px rgba(21,88,36,0.10);
+            letter-spacing: 0.01em;
+            width: fit-content;
+            min-width: 180px;
+        }
+        .back-btn:hover, .back-btn:focus {
+            background: #c7bc10;
+            color: #000;
+            box-shadow: 0 4px 14px rgba(21,88,36,0.13);
+            text-decoration: none;
+            outline: none;
+        }
         @media (max-width:600px) {
             .brand-logo { width:60px; height:60px;}
             .payment-icon { width:26px; height:26px;}
             .payment-option { font-size:1em;}
+            .back-btn { min-width: 120px; padding: 12px 18px; font-size: 1em;}
         }
     </style>
 </head>
@@ -48,7 +75,7 @@
     <img src="images/LOGO.png" alt="Marie Custom Goods Logo" class="brand-logo" loading="lazy" width="90" height="90">
     <h1>Your Order Summary</h1>
     <ul id="order-list"></ul>
-    <div class="total" id="order-total"></div><br>
+    <div class="total" id="order-total"></div>
     <form class="checkout-form" id="checkout-form" autocomplete="off" method="POST" action="https://formspree.io/f/xgvzwjlg">
         <div class="form-group">
             <label for="email">Your Email <span class="required">*</span></label>
@@ -114,7 +141,7 @@
         If you have any questions or need assistance, please contact us at <a href="mailto:contact@mariecustomgoods.com">contact@mariecustomgoods.com</a>.<br><br>
         <strong>Thank you for your order with MARIE CUSTOM GOODS. We look forward to your next purchase!</strong>
     </div>
-    <a href="index.html" class="back-btn">Back to Shop</a>
+    <a href="index.html" class="back-btn">← Back to Shop</a>
 </div>
 <script>
     // Payment platforms (add your icon path if you wish)
